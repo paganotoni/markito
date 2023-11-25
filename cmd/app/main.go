@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"markito/internal/app"
+	"markito/internal/app/config"
 
 	"github.com/leapkit/core/server"
 )
@@ -12,6 +13,9 @@ import (
 func main() {
 	s := server.New(
 		"Markito",
+
+		server.WithHost("0.0.0.0"),
+		server.WithPort(config.Port),
 	)
 
 	if err := app.AddServices(s); err != nil {
