@@ -4,12 +4,13 @@ import (
 	"embed"
 	"path"
 
-	"github.com/leapkit/core/mdfs"
 	"markito/internal/app/config"
+
+	"github.com/leapkit/core/mdfs"
 )
 
 var (
-	//go:embed **/*.html
+	//go:embed **/**/*.html **/*.html
 	tmpls embed.FS
 
 	// Templates is a MDFS with the templates so we can use them in the application
