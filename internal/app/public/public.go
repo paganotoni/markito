@@ -4,12 +4,13 @@ import (
 	"embed"
 	"path/filepath"
 
-	"github.com/leapkit/core/mdfs"
 	"markito/internal/app/config"
+
+	"github.com/leapkit/core/mdfs"
 )
 
 var (
-	//go:embed *.css
+	//go:embed *.css *.js
 	files embed.FS
 
 	// Folder is a mdfs instance that contains all the
