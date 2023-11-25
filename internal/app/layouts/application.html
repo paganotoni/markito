@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markito</title>
+    <link rel="stylesheet" href="/public/application.css">
+    
+    <script src="https://unpkg.com/hyperscript.org@0.9.8"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    
+    
+    <script src="https://unpkg.com/prismjs@1.29.0/prism.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.3.0/themes/prism.css">
+	<script src="https://unpkg.com/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    
+    <script src="/public/highlight.js"></script>
+</head>
+<body class="h-full flex flex-col min-h-full">
+    <header class="bg-gray-400 p-3 px-5 flex flex-row gap-3 items-center text-white">
+        <a href="/" class="font-bold text-lg heading-wide">
+            <h1>📓 Markito</h1>
+        </a>
+        <span class="flex-grow">
+            <div id="link-container"><%= contentOf("savedData") {%><% } %></div>
+        </span>
+        <div class="">
+            <a href="#" hx-post="/save" hx-target="#link-container" hx-include="[name='MarkdownContent'], [id='DocumentID']">Save</a>
+        </div>
+    </header>
+    <section class="flex-grow flex flex-col gap-4 w-full" >
+        <main class="px-5 h-full py-5 flex flex-col gap-5 bg-gray-100" x-data="">            
+            <%= yield %>
+        </main>
+    </section>
+</body>
+</html>

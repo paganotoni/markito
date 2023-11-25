@@ -1,0 +1,28 @@
+<%= if (doc != nil) { %>
+    <% contentFor("savedData"){ %>
+        <%= partial("documents/saved.html", {}) %>
+    <% } %>
+<% } %>
+
+<div class="grid grid-cols-2 w-full h-full gap-5">
+    <div class="flex-grow max-h-full">
+        <pre contenteditable class="language-markdown border-2 border-gray-400 rounded h-full !whitespace-pre-wrap" hx-post="/parse" hx-trigger="keyup delay:200ms" hx-target="#htmlcontainer" hx-include="#MarkdownContent"><%= content %></pre>
+        <input type="hidden" name="MarkdownContent" id="MarkdownContent">
+    
+        <script>
+            var editor = document.querySelector('pre');
+            editor = bililiteRange.fancyText(editor, Prism.highlightElement);
+
+            editor.addEventListener('keyup', function(e) {
+                document.querySelector('#MarkdownContent').value = editor.textContent;
+            });
+            
+            // Setting the default value
+            document.querySelector('#MarkdownContent').value = editor.textContent;
+        </script>
+    </div>
+    <div class="flex-grow max-h-full">
+        <div id="htmlcontainer" class="h-full w-full p-5 border border-gray-400 bg-gray-200 rounded mt-2"><%= html %></div>
+    </div>
+</div>
+

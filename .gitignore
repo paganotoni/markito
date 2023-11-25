@@ -1,0 +1,4 @@
+internal/app/public/application.css
+bin/*
+.env
+markito.db*

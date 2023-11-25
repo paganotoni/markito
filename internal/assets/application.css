@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* for line numbers */
+[class*="language-"] {
+	counter-reset: linenumber;
+}
+
+pre {
+    overflow: auto;
+    white-space: nowrap; /* Allows textarea to scroll horizontally */
+}
+
+span.line{
+	display: inline-block;
+	width: 100%;
+	counter-increment: linenumber;
+}
+
+span.line:nth-child(odd){
+	background: #f0f0f0;
+}
+
+span.line:before{
+	content: counter(linenumber);
+	font-size: 100%;
+	width: 2em;
+	display: inline-block;
+	font-weight: normal;
+	color: black;
+	border-right: 1px solid black;
+	margin-right: 5px;
+	padding-right: 5px;
+	text-align: right;
+}
+
+#htmlcontainer h1, #htmlcontainer h2, #htmlcontainer h3, #htmlcontainer h4, #htmlcontainer h5, #htmlcontainer h6{
+    @apply font-bold mb-1;
+}
+
+#htmlcontainer h1{
+    @apply text-3xl font-bold;
+}
+
+#htmlcontainer h2{
+    @apply text-2xl;
+}
+
+#htmlcontainer h3{
+    @apply text-xl;
+}
+
+#htmlcontainer h4{
+    @apply text-lg;
+}
+
+#htmlcontainer p{
+    @apply text-base mb-3;
+}
+
+#htmlcontainer a{
+    @apply text-base underline text-blue-500;
+}
+
+#htmlcontainer ul {
+    @apply list-disc list-inside ml-5 mb-4;
+}
+
+#htmlcontainer ul li{
+    @apply list-disc list-inside;
+}
+
+#htmlcontainer ol {
+    @apply list-decimal list-inside ml-5 mb-4;
+}
+
+#htmlcontainer ol li{
+    @apply list-decimal list-inside;
+}
