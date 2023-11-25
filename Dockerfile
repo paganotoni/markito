@@ -17,4 +17,4 @@ WORKDIR /bin/
 COPY --from=builder /src/app/bin/app .
 COPY --from=builder /src/app/bin/db .
 
-CMD /bin/app
+CMD /bin/db create & /bin/db migrate; /bin/app
