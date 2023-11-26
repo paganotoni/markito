@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	//go:embed *.html **/**/*.html **/*.html
+	//go:embed *.html **/*.html
 	tmpls embed.FS
 
 	// Templates is a MDFS with the templates so we can use them in the application

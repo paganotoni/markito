@@ -28,7 +28,12 @@ func AddRoutes(r *server.Instance) error {
 
 	// LeapKit Middleware
 	r.Use(session.Middleware(config.SessionSecret, config.SessionName))
-	r.Use(render.Middleware(internal.Templates, render.WithHelpers(helpers.All)))
+	r.Use(render.Middleware(
+		internal.Templates,
+
+		render.WithHelpers(helpers.All),
+		render.WithDefaultLayout("layout.html"),
+	))
 
 	r.Get("/", documents.New)
 	r.Post("/parse", markdown.Parse)
