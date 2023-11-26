@@ -6,7 +6,12 @@
 
 <div class="grid grid-cols-2 w-full h-full gap-5">
     <div class="flex-grow max-h-full relative">
-        <textarea class="border-2 border-gray-400 rounded h-full w-full p-5" hx-post="/parse" hx-trigger="keyup delay:200ms" hx-target="#htmlcontainer" id="MarkdownContent" name="MarkdownContent"><%= content %></textarea>
+        <textarea 
+            class="border-2 border-gray-400 rounded h-full w-full p-5" 
+            hx-post="/parse" hx-trigger="keyup changed delay:200ms, change delay:200ms" 
+            hx-target="#htmlcontainer" id="MarkdownContent" 
+            name="MarkdownContent"><%= content %></textarea>
+
         <%= partial("copy.html", {
             "message": "✅ Markdown copied to clipboard",
             "targetID": "#MarkdownContent", 
