@@ -1,32 +1,27 @@
-## 🎒🚀 LeapKit
+## 📓 Markito
 
-LeapKit is a template for building web applications with Go, HTMX and Tailwind CSS. It integrates useful features such as hot code reload and css recompiling.
+Markito is a tool to create, edit and share Markdown content. I named it Markito because of the [Markdown](https://es.wikipedia.org/wiki/Markdown) language, my good old friend (_Marcos or Marquitos_ 😊), and the old and renowned Roman Emperor: [_Marcus Aurelius_](https://www.britannica.com/biography/Marcus-Aurelius-Roman-emperor). 
 
-### Getting started
+To know more go and see the [live version of Markito](https://markito-production.up.railway.app/mfXhz4yLYUVgA9sqJrBQyV).
 
-Install Gonew:
+## Stack
+This is the list of technologies I've used to make this work:
 
-```
-go install rsc.io/tmp/gonew@latest 
-```
-
-Create a new project from template:
-
-```
-gonew github.com/leapkit/template@latest github.com/your/app 
-```
-⚠️ Important: Gonew does not support modules without github.com or similar use github.com/your/app as the pattern for the module path of the newly created project.
+- [Go](https://golang.org/)
+- [LeapKit](https://github.com/leapkit/core)
+- [SQLite](https://sqlite.org)
+- [HTMX](https://htmx.org/)
+- [TailwindCSS](https://tailwindcss.com/)
 
 ### Setup
-
-Install dependencies:
+Install dependencies and run the setup command:
 
 ```
 go mod download
 go run ./cmd/setup
 ```
 
-### Running the application
+### Running the application in development
 
 To run the application in development mode execute:
 
@@ -34,4 +29,5 @@ To run the application in development mode execute:
 go run ./cmd/dev
 ```
 And open http://localhost:3000 in your browser.
+
 
