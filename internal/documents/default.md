@@ -5,11 +5,12 @@ Markito is a simple online markdown editor built for the web. It's designed with
 - Inline Editing ✅
 - Document Storage  ✅
 - Document Unique link ✅
-- Preview elements styling 🟡 (this one may be long and tedious 😅)
-- Copy all / Export ✅
-- Editor Syntax Highlight 
+- Copy all / Export ✅ 
 
 ## Tools used 
-- [HTMX](https://htmx.org/)
+These are the technologies I've used to make this work:
+
 - [Go](https://golang.org/)
+- [HTMX](https://htmx.org/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [SQLite](https://sqlite.org)
