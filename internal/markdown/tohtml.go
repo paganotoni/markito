@@ -11,7 +11,7 @@ import (
 // ToHTML converts markdown to HTML
 func ToHTML(md string) template.HTML {
 	// create markdown parser with extensions
-	extensions := parser.CommonExtensions | parser.AutoHeadingIDs | parser.NoEmptyLineBeforeBlock
+	extensions := parser.CommonExtensions | parser.AutoHeadingIDs | parser.NoEmptyLineBeforeBlock | parser.Footnotes
 	p := parser.NewWithExtensions(extensions)
 	doc := p.Parse([]byte(md))
 

@@ -36,7 +36,12 @@ span.line:before{
 	text-align: right;
 }
 
-#htmlcontainer h1, #htmlcontainer h2, #htmlcontainer h3, #htmlcontainer h4, #htmlcontainer h5, #htmlcontainer h6{
+#htmlcontainer h1, 
+#htmlcontainer h2, 
+#htmlcontainer h3, 
+#htmlcontainer h4, 
+#htmlcontainer h5, 
+#htmlcontainer h6 {
     @apply font-bold mb-1;
 }
 
@@ -78,4 +83,28 @@ span.line:before{
 
 #htmlcontainer ol li{
     @apply list-decimal list-inside;
+}
+
+#htmlcontainer hr {
+	@apply my-4 block border border-gray-400;
+}
+
+#htmlcontainer sup a {
+	@apply text-xs italic text-blue-500;
+}
+
+#htmlcontainer code {
+	@apply p-1 bg-gray-300 rounded;
+}
+
+#htmlcontainer pre {
+	@apply block p-3 bg-gray-300 rounded mb-3;
+}
+
+#htmlcontainer blockquote {
+	@apply block px-3 p-2 bg-gray-300 border border-l-[4px] border-l-gray-400 pl-3 mb-2;
+}
+
+#htmlcontainer blockquote p {
+	@apply mb-0 text-lg;
 }
