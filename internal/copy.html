@@ -1,0 +1,13 @@
+<script>
+    function copy(selector, message) {
+        let id = document.querySelector(selector).innerHTML
+        navigator.clipboard.writeText(id);
+        htmx.trigger("#flash", "htmx:notify",  {'message': message})
+    }
+</script>
+<span 
+    class="cursor-pointer <%= class %>"
+    hx-on:click="copy(this.dataset.target, `<%= message %>`)" 
+    data-target="<%= targetID %>">
+    📋
+</span>

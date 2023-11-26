@@ -12,12 +12,11 @@ import (
 func Save(w http.ResponseWriter, r *http.Request) {
 	documents := r.Context().Value("documentsService").(*service)
 
+	content := r.FormValue("MarkdownContent")
 	id := r.FormValue("DocumentID")
 	if id == "" {
 		id = shortuuid.New()
 	}
-
-	content := r.FormValue("MarkdownContent")
 
 	err := documents.Save(id, content)
 	if err != nil {
@@ -30,6 +29,9 @@ func Save(w http.ResponseWriter, r *http.Request) {
 		ID:      id,
 		Content: content,
 	})
+
+	// Setting the new location of the document in the header
+	w.Header().Set("Hx-Push", "/"+id)
 
 	err = rw.RenderClean("documents/saved.html")
 	if err != nil {

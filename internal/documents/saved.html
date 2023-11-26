@@ -1,2 +1,9 @@
 <span><a href="<%= documentLink(doc.ID) %>" class="underline"><%= doc.ID %></a></span>
 <input type="hidden" id="DocumentID" name="DocumentID" value="<%= doc.ID %>">
+<span class="hidden" id="documentIDLink"><%= documentLink(doc.ID) %></span>
+<%= partial("copy.html", {
+    "message": "✅ Link copied to clipboard",
+    "targetID": 
+    "#documentIDLink", 
+    "class": ""
+}) %>
