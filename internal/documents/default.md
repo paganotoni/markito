@@ -14,3 +14,16 @@ These are the technologies I've used to make this work:
 - [HTMX](https://htmx.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [SQLite](https://sqlite.org)
+
+### Get in touch
+
+My name is Antonio and I love to build things. If you want to know more about this tool, have questions, or simply want to get in touch you can find me in the following links:
+
+- [My website](https://antoniopagano.com)
+- [My Twitter](https://twitter.com/paganotoni)
+- [My LinkedIn](https://www.linkedin.com/in/paganotoni/)
+
+Also, take a look at my other endeavours:
+
+- [SymbolSecurity](https://symbolsecurity.com)
+- [Wawandco](https://wawand.co)
