@@ -30,4 +30,17 @@ go run ./cmd/dev
 ```
 And open http://localhost:3000 in your browser.
 
+### Get in touch
+
+My name is Antonio and I love to build things. If you want to know more about this tool, have questions, or simply want to get in touch you can find me in the following links:
+
+- [My website](https://antoniopagano.com)
+- [My Twitter](https://twitter.com/paganotoni)
+- [My LinkedIn](https://www.linkedin.com/in/paganotoni/)
+
+Also, take a look at my other endeavours:
+
+- [SymbolSecurity](https://symbolsecurity.com)
+- [Wawandco](https://wawand.co)
+
 
