@@ -17,13 +17,13 @@ These are the technologies I've used to make this work:
 
 ### Get in touch
 
-My name is Antonio and I love to build things. If you want to know more about this tool, have questions, or simply want to get in touch you can find me in the following links:
+My name is Antonio, and I love to build things. If you want to know more about this tool, have questions, or want to get in touch, you can find me at the following links:
 
 - [My website](https://antoniopagano.com)
 - [My Twitter](https://twitter.com/paganotoni)
 - [My LinkedIn](https://www.linkedin.com/in/paganotoni/)
 
-Also, take a look at my other endeavours:
+Also, take a look at my other endeavors:
 
 - [SymbolSecurity](https://symbolsecurity.com)
 - [Wawandco](https://wawand.co)
