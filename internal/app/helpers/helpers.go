@@ -7,11 +7,11 @@ import (
 
 // All used by the application to render the templates.
 var All = hctx.Merge(
-	render.AllHelpers,
 	hctx.Map{
 		"urlHas":       urlHas,
 		"hasPrefix":    hasPrefix,
 		"urlWithParam": urlWithParams,
 		"documentLink": documentLink,
 	},
+	render.AllHelpers,
 )

@@ -11,6 +11,7 @@ import (
 
 	"markito/internal"
 	"markito/internal/app/config"
+	"markito/internal/app/helpers"
 	"markito/internal/app/public"
 	"markito/internal/documents"
 	"markito/internal/markdown"
@@ -30,7 +31,7 @@ func AddRoutes(r *server.Instance) error {
 	r.Use(render.Middleware(
 		internal.Templates,
 
-		render.WithHelpers(render.AllHelpers),
+		render.WithHelpers(helpers.All),
 		render.WithDefaultLayout("layout.html"),
 	))
 
