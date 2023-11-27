@@ -1,11 +1,14 @@
 package helpers
 
-import "github.com/leapkit/core/render"
+import (
+	"github.com/leapkit/core/hctx"
+	"github.com/leapkit/core/render"
+)
 
 // All used by the application to render the templates.
-var All = render.MergeHelpers(
+var All = hctx.Merge(
 	render.AllHelpers,
-	map[string]any{
+	hctx.Map{
 		"urlHas":       urlHas,
 		"hasPrefix":    hasPrefix,
 		"urlWithParam": urlWithParams,
