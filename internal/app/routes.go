@@ -1,8 +1,6 @@
 package app
 
 import (
-	"net/http"
-
 	"github.com/go-chi/chi/v5/middleware"
 
 	"github.com/leapkit/core/render"
@@ -12,9 +10,9 @@ import (
 	"markito/internal"
 	"markito/internal/app/config"
 	"markito/internal/app/helpers"
-	"markito/internal/app/public"
 	"markito/internal/documents"
 	"markito/internal/markdown"
+	"markito/public"
 )
 
 // AddRoutes mounts the routes for the application,
@@ -42,7 +40,7 @@ func AddRoutes(r *server.Instance) error {
 
 	// Public files that include anything thats on the
 	// public folder. This is useful for files and assets.
-	r.Handle("/public/*", http.StripPrefix("/public/", http.FileServer(http.FS(public.Folder))))
+	r.Folder("/public", public.Files)
 
 	return nil
 }

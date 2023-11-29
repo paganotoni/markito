@@ -5,6 +5,7 @@
 package config
 
 import (
+	"github.com/leapkit/core/assets"
 	"github.com/leapkit/core/envor"
 	"github.com/leapkit/core/gloves"
 	"github.com/paganotoni/tailo"
@@ -31,18 +32,13 @@ var (
 	// watcher and builder.
 	TailoOptions = []tailo.Option{
 		tailo.UseInputPath("internal/assets/application.css"),
-		tailo.UseOutputPath("internal/app/public/application.css"),
+		tailo.UseOutputPath("public/application.css"),
 		tailo.UseConfigPath("tailwind.config.js"),
 	}
 
 	GlovesOptions = []gloves.Option{
-		gloves.WithRunner(func() {
-			// Run the tailo watcher so when changes are made to
-			// the html code it rebuilds css.
-			tailo.Watch(TailoOptions...)
-		}),
-
-		// Extensions to watch
+		gloves.WithRunner(tailo.WatcherFn(TailoOptions...)),
+		gloves.WithRunner(assets.Watcher("internal/assets", "public")),
 		gloves.WatchExtension(".go", ".env", ".json", ".html", ".js", ".md"),
 	}
 )
