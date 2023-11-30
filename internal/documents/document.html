@@ -20,7 +20,18 @@
 
             hx-post="/parse" hx-trigger="keyup changed delay:200ms, change delay:200ms" 
             hx-target="#htmlcontainer" id="MarkdownContent" 
-            name="MarkdownContent"><%= content %></textarea>
+            name="MarkdownContent"
+            _="on keydown
+                if the event's key is 'Tab'
+                    halt the event
+                    me.setRangeText(
+                        '\t',
+                        me.selectionStart,
+                        me.selectionStart,
+                        'end'
+                      )
+            "
+            ><%= content %></textarea>
 
         <%= partial("copy.html", {
             "message": "✅ Markdown copied to clipboard",
