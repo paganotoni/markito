@@ -6,16 +6,26 @@
 
 <div class="grid grid-cols-2 w-full h-full gap-5">
     <div class="flex-grow max-h-[calc(100vh-130px)] relative h-full bg-white border-2 border-gray-400">
-        <textarea 
-            class="rounded h-full w-full p-5 h-auto border-0" 
+        <textarea
+        class="rounded h-full w-full p-5 h-auto border-0" 
 
-            hx-post="/parse" hx-trigger="keyup changed delay:200ms, change delay:200ms" 
-            hx-target="#htmlcontainer" id="MarkdownContent" 
+            hx-post="/parse" hx-trigger="keyup changed delay:200ms, change delay:200ms"
+            _="on keydown
+                if the event's key is 'Tab'
+                    halt the event
+                    me.setRangeText(
+                        '\t',
+                        me.selectionStart,
+                        me.selectionStart,
+                        'end'
+                      )
+            "
+            hx-target="#htmlcontainer" id="MarkdownContent"
             name="MarkdownContent"><%= content %></textarea>
 
         <%= partial("copy.html", {
             "message": "✅ Markdown copied to clipboard",
-            "targetID": "#MarkdownContent", 
+            "targetID": "#MarkdownContent",
             "class":"absolute cursor-pointer rounded-lg hover:bg-gray-300 top-2 right-2 p-3 bg-gray-200/80",
         }) %>
     </div>
@@ -26,10 +36,10 @@
         </div>
         <%= partial("copy.html", {
             "message": "✅ HTML copied to clipboard",
-            "targetID": "#htmlcontainer", 
+            "targetID": "#htmlcontainer",
             "class":"absolute cursor-pointer rounded-lg hover:bg-gray-300 top-2 right-2 p-3 bg-gray-200/80"
         }) %>
     </div>
-        
+
 </div>
 
