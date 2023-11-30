@@ -31,14 +31,14 @@ var (
 	// Options for tailo, this is used to setup the tailwindcss
 	// watcher and builder.
 	TailoOptions = []tailo.Option{
-		tailo.UseInputPath("internal/assets/application.css"),
-		tailo.UseOutputPath("public/application.css"),
-		tailo.UseConfigPath("tailwind.config.js"),
+		tailo.UseInputPath("./internal/assets/application.css"),
+		tailo.UseOutputPath("./public/application.css"),
+		tailo.UseConfigPath("./tailwind.config.js"),
 	}
 
 	GlovesOptions = []gloves.Option{
 		gloves.WithRunner(tailo.WatcherFn(TailoOptions...)),
-		gloves.WithRunner(assets.Watcher("internal/assets", "public")),
+		gloves.WithRunner(assets.Watcher("./internal/assets", "./public")),
 		gloves.WatchExtension(".go", ".env", ".json", ".html", ".js", ".md"),
 	}
 )
