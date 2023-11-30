@@ -6,7 +6,7 @@ require (
 	github.com/go-chi/chi/v5 v5.0.10
 	github.com/gomarkdown/markdown v0.0.0-20231115200524-a660076da3fd
 	github.com/jmoiron/sqlx v1.3.5
-	github.com/leapkit/core v1.2.3
+	github.com/leapkit/core v1.2.4
 	github.com/lib/pq v1.10.9
 	github.com/lithammer/shortuuid/v4 v4.0.0
 	github.com/mattn/go-sqlite3 v1.14.15
