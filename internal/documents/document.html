@@ -1,7 +1,16 @@
-<%= if (doc != nil) { %>
-    <% contentFor("savedData"){ %>
+<% contentFor("savedData"){ %>
+    <%= if (doc == nil) { %>
+        <a href="#" 
+            hx-post="/save" 
+            hx-target="#link-container" 
+            hx-include="[name='MarkdownContent'], [id='DocumentID']"
+            hx-on::after-request="htmx.trigger('#flash', 'htmx:notify', {message: '✅ Document saved successfully.'})"
+            class="bg-blue-500 hover:bg-blue-600 text-white py-2.5 px-2 rounded-md">
+            ⬆️ Share Document
+        </a>
+    <% } else {%>    
         <%= partial("documents/saved.html", {}) %>
-    <% } %>
+    <% }%>
 <% } %>
 
 <div class="grid grid-cols-2 w-full h-full gap-5">

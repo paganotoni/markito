@@ -2,7 +2,7 @@ module.exports = {
   content: [
     'internal/*.html',
     'internal/**/*.html',
-    "internal/public/*.js",  
+    "public/*.js",  
   ],
 
   plugins: [
