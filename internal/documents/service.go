@@ -30,6 +30,16 @@ func (s service) Find(id string) (*Document, error) {
 	return &doc, nil
 }
 
+func (s service) List() ([]Document, error) {
+	var doc []Document
+	err := s.db.Select(&doc, "SELECT * FROM documents")
+	if err != nil {
+		return nil, err
+	}
+
+	return doc, nil
+}
+
 func NewService(db *sqlx.DB) *service {
 	return &service{
 		db: db,

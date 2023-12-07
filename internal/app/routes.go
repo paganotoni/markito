@@ -37,6 +37,7 @@ func AddRoutes(r *server.Instance) error {
 	r.Post("/parse", markdown.Parse)
 	r.Post("/save", documents.Save)
 	r.Get("/{id}", documents.Open)
+	r.Get("/list/all", documents.List)
 
 	// Public files that include anything thats on the
 	// public folder. This is useful for files and assets.
