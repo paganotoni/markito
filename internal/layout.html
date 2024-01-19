@@ -16,13 +16,14 @@
 </head>
 <body class="h-full flex flex-col min-h-full">
     <header class="bg-gray-400 p-3 px-5 flex flex-row gap-3 items-center text-white">
-        <a href="/" class="font-bold text-lg heading-wide">
+        <a href="/" class="font-bold text-lg heading-wide border-r border-1 border-white pr-5">
             <h1>📓 Markito</h1>
         </a>
-        <span class="flex-grow border-l border-1 border-white pl-4 ">
+        <div class="flex-grow"></div>
+        <span class="pl-4 ">
             <div id="link-container"><%= contentOf("savedData") {%><% } %></div>
         </span>
-        <div></div>
+        
     </header>
     <section class="flex-grow flex flex-col gap-4 w-full" >
         <main class="px-5 h-full py-5 flex flex-col gap-5 bg-gray-100" x-data="">            

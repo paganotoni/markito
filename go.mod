@@ -9,7 +9,7 @@ require (
 	github.com/leapkit/core v1.2.8
 	github.com/lib/pq v1.10.9
 	github.com/lithammer/shortuuid/v4 v4.0.0
-	github.com/mattn/go-sqlite3 v1.14.15
+	github.com/mattn/go-sqlite3 v1.14.19
 	github.com/paganotoni/tailo v1.0.3
 )
 
