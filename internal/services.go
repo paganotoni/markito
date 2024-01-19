@@ -1,7 +1,7 @@
-package app
+package internal
 
 import (
-	"markito/internal/app/database"
+	"markito/internal/database"
 	"markito/internal/documents"
 
 	"github.com/leapkit/core/server"

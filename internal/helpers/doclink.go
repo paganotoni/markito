@@ -1,6 +1,6 @@
 package helpers
 
-import "markito/internal/app/config"
+import "markito/internal/config"
 
 func documentLink(id string) string {
 	return config.BaseURL + "/" + id

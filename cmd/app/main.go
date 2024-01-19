@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"markito/internal/app"
-	"markito/internal/app/config"
+	"markito/internal"
+	"markito/internal/config"
 
 	"github.com/leapkit/core/server"
 )
@@ -18,11 +18,11 @@ func main() {
 		server.WithPort(config.Port),
 	)
 
-	if err := app.AddServices(s); err != nil {
+	if err := internal.AddServices(s); err != nil {
 		os.Exit(1)
 	}
 
-	if err := app.AddRoutes(s); err != nil {
+	if err := internal.AddRoutes(s); err != nil {
 		os.Exit(1)
 	}
 

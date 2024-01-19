@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 
+	"markito/internal/config"
+
 	"github.com/leapkit/core/gloves"
-	"markito/internal/app/config"
 )
 
 func main() {

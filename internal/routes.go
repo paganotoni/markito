@@ -1,4 +1,4 @@
-package app
+package internal
 
 import (
 	"github.com/go-chi/chi/v5/middleware"
@@ -7,10 +7,9 @@ import (
 	"github.com/leapkit/core/server"
 	"github.com/leapkit/core/session"
 
-	"markito/internal"
-	"markito/internal/app/config"
-	"markito/internal/app/helpers"
+	"markito/internal/config"
 	"markito/internal/documents"
+	"markito/internal/helpers"
 	"markito/internal/markdown"
 	"markito/public"
 )
@@ -27,7 +26,7 @@ func AddRoutes(r *server.Instance) error {
 	// LeapKit Middleware
 	r.Use(session.Middleware(config.SessionSecret, config.SessionName))
 	r.Use(render.Middleware(
-		internal.Templates,
+		templates,
 
 		render.WithHelpers(helpers.All),
 		render.WithDefaultLayout("layout.html"),

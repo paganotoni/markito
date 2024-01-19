@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"markito/internal/app/config"
-	"markito/internal/app/database"
-	"markito/internal/app/database/migrations"
+	"markito/internal/config"
+	"markito/internal/database"
+	"markito/internal/database/migrations"
 
 	"github.com/leapkit/core/db"
 

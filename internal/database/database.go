@@ -1,7 +1,7 @@
 package database
 
 import (
-	"markito/internal/app/config"
+	"markito/internal/config"
 
 	"github.com/leapkit/core/db"
 	_ "github.com/mattn/go-sqlite3"

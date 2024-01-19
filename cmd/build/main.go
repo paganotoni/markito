@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/exec"
 
-	"markito/internal/app/config"
+	"markito/internal/config"
 
 	"github.com/leapkit/core/assets"
 	"github.com/paganotoni/tailo"
