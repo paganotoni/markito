@@ -8,7 +8,14 @@
 	counter-reset: linenumber;
 }
 
+pre {
+	max-width: 100%;
+	overflow: scroll;
+}
 
+pre code {
+	max-width: 100%;
+}
 
 span.line{
 	display: inline-block;
