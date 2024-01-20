@@ -8,10 +8,7 @@
 	counter-reset: linenumber;
 }
 
-pre {
-    overflow: auto;
-    white-space: nowrap; /* Allows textarea to scroll horizontally */
-}
+
 
 span.line{
 	display: inline-block;
