@@ -39,6 +39,6 @@ var (
 	GlovesOptions = []gloves.Option{
 		gloves.WithRunner(tailo.WatcherFn(TailoOptions...)),
 		gloves.WithRunner(assets.Watcher("./internal/assets", "./public")),
-		gloves.WatchExtension(".go", ".env", ".json", ".html", ".js", ".md"),
+		gloves.WatchExtension(".go", ".env", ".json", ".js", ".md"),
 	}
 )

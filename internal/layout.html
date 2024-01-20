@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/public/application.css">
     
     <script src="https://unpkg.com/hyperscript.org@0.9.8"></script>
-    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,14 +15,22 @@
     
 </head>
 <body class="h-full flex flex-col min-h-full">
-    <header class="bg-gray-400 p-3 px-5 flex flex-row gap-3 items-center text-white">
+    <header class="bg-blue-400 p-3 px-5 flex flex-row gap-5 items-center text-white">
         <a href="/" class="font-bold text-lg heading-wide border-r border-1 border-white pr-5">
             <h1>📓 Markito</h1>
         </a>
-        <div class="flex-grow"></div>
-        <span class="pl-4 ">
-            <div id="link-container"><%= contentOf("savedData") {%><% } %></div>
+        <div class="flex-grow">
+            <a href="https://github.com/paganotoni/markito" class="cursor-pointer border border-white rounded-full bg-white-500 p-2 px-4 text-white">Take a look at Markitos in Github.</a>
+        </div>
+        <span class="pl-4 flex flex-row items-center">
+            <div id="link-container">
+                <%= contentOf("savedData") {%><% } %>
+            </div>
         </span>
+
+        <!--div>
+            <a href="" class="rounded-full w-50 h-50 bg-red-500 p-2">AP</a>
+        </div-->
         
     </header>
     <section class="flex-grow flex flex-col gap-4 w-full" >
