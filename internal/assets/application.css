@@ -11,6 +11,7 @@
 pre {
 	max-width: 100%;
 	overflow: scroll;
+	counter-reset: line;
 }
 
 pre code {
