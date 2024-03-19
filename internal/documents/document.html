@@ -13,11 +13,10 @@
     <% }%>
 <% } %>
 
-<div class="grid grid-cols-2 w-full h-full gap-5">
-    <div class="flex-grow max-h-[calc(100vh-130px)] relative h-full bg-white border-2 border-gray-400">
+<div class="grid grid-cols-2 w-full h-full gap-5 max-h-[calc(100vh-130px)]">
+    <div class="relative max-h-inherit">
         <textarea
-            class="rounded h-full w-full p-5 border-0"
-
+            class="w-full h-full rounded-lg p-5 bg-white border-gray-400 resize-none box-border focus:ring-blue-400 focus:border-blue-400"
             hx-post="/parse" hx-trigger="keyup changed delay:200ms, change delay:200ms"
             hx-target="#htmlcontainer" id="MarkdownContent"
             name="MarkdownContent"
@@ -29,39 +28,35 @@
                         me.selectionStart,
                         me.selectionStart,
                         'end'
-                      )
+                    )
                 end
                 on scroll
                     set #htmlcontainer's scrollTop to my scrollTop
                 end
-            "
-            ><%= content %>
-        </textarea>
+            "><%= content %></textarea>
 
         <%= partial("copy.html", {
             "message": "✅ Markdown copied to clipboard",
             "targetID": "#MarkdownContent",
-            "class":"absolute cursor-pointer rounded-lg hover:bg-gray-300 top-2 right-2 p-3 bg-gray-200/80",
+            "class":"absolute top-3 right-3 p-3 w-10 h-10 flex items-center justify-center bg-gray-200/80 cursor-pointer rounded-md hover:bg-gray-300",
         }) %>
     </div>
 
-    <div class="relative flex-grow-x max-h-[calc(100vh-130px)] border border-gray-400 bg-gray-200">
+    <div class="relative max-h-inherit">
         <div
             id="htmlcontainer"
-            class="w-full max-h-full h-full rounded p-5 py-5 pb-10 overflow-scroll"
+            class="w-full h-full p-5 border border-gray-400 bg-gray-150 rounded-lg overflow-scroll"
             _="
-            on DOMSubtreeModified hljs.highlightAll() end
-            on scroll set #MarkdownContent's scrollTop to my scrollTop end
-        ">
-            <%= html %>
-            <script>
-                hljs.highlightAll("#htmlcontainer")
-            </script>
-        </div>
+                on DOMSubtreeModified hljs.highlightAll() end
+                on scroll set #MarkdownContent's scrollTop to my scrollTop end
+            "><%= html %></div>
+        <script>
+            hljs.highlightAll("#htmlcontainer")
+        </script>
         <%= partial("copy.html", {
             "message": "✅ HTML copied to clipboard",
             "targetID": "#htmlcontainer",
-            "class":"absolute cursor-pointer rounded-lg hover:bg-gray-300 top-2 right-2 p-3 bg-gray-200/80"
+            "class":"absolute top-2 right-3 p-3 w-10 h-10 flex items-center justify-center bg-gray-300/80 cursor-pointer rounded-md hover:bg-gray-400",
         }) %>
     </div>
 
