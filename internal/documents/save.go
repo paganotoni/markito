@@ -1,6 +1,7 @@
 package documents
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/leapkit/core/render"
@@ -20,6 +21,7 @@ func Save(w http.ResponseWriter, r *http.Request) {
 
 	err := documents.Save(id, content)
 	if err != nil {
+		fmt.Println("Error saving document", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

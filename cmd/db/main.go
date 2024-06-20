@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"os"
 
-	"markito/internal/config"
-	"markito/internal/database"
-	"markito/internal/database/migrations"
+	"markito/internal"
+	"markito/internal/migrations"
 
 	"github.com/leapkit/core/db"
 
-	_ "github.com/lib/pq"
+	// sqlite3 driver
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 	switch os.Args[1] {
 	case "migrate":
 		// Create database if it does not exist
-		conn, err := database.Connection()
+		conn, err := internal.DB()
 		if err != nil {
 			fmt.Println("error connecting:", err)
 			return
@@ -42,18 +42,17 @@ func main() {
 
 		fmt.Println("✅ Migrations ran successfully")
 	case "create":
-		file, err := os.OpenFile(config.DatabaseURL, os.O_RDWR|os.O_CREATE|os.O_EXCL, 0666)
-		if err != nil && os.IsExist(err) {
-			fmt.Println("✅ Database already exists")
+		err := db.Create(internal.DatabaseURL)
+		if err != nil {
+			fmt.Println(err)
+
 			return
 		}
-
-		defer file.Close()
 
 		fmt.Println("✅ Database created successfully")
 
 	case "drop":
-		err := db.Drop(config.DatabaseURL)
+		err := db.Drop(internal.DatabaseURL)
 		if err != nil {
 			fmt.Println(err)
 

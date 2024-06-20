@@ -1,7 +1,12 @@
 package helpers
 
-import "markito/internal/config"
+import (
+	"cmp"
+	"os"
+)
+
+var baseURL = cmp.Or(os.Getenv("BASE_URL"), "http://localhost:3000")
 
 func documentLink(id string) string {
-	return config.BaseURL + "/" + id
+	return baseURL + "/" + id
 }

@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 
-	"markito/internal/config"
-	"markito/internal/database"
-	"markito/internal/database/migrations"
+	"markito/internal"
+	"markito/internal/migrations"
 
 	"github.com/leapkit/core/db"
 
@@ -22,7 +21,7 @@ func main() {
 
 	fmt.Println("✅ Tailwind CSS setup successfully")
 
-	err = db.Create(config.DatabaseURL)
+	err = db.Create(internal.DatabaseURL)
 	if err != nil {
 		fmt.Println(err)
 
@@ -31,7 +30,7 @@ func main() {
 
 	fmt.Println("✅ Database created successfully")
 
-	conn, err := database.Connection()
+	conn, err := internal.DB()
 	if err != nil {
 		fmt.Println(err)
 		return

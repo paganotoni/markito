@@ -1,21 +1,23 @@
 package main
 
 import (
+	"cmp"
 	"fmt"
+	"net/http"
 	"os"
 
 	"markito/internal"
-	"markito/internal/config"
 
 	"github.com/leapkit/core/server"
+
+	// sqlite3 driver
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
 	s := server.New(
-		"Markito",
-
-		server.WithHost("0.0.0.0"),
-		server.WithPort(config.Port),
+		server.WithHost(cmp.Or(os.Getenv("HOST"), "0.0.0.0")),
+		server.WithPort(cmp.Or(os.Getenv("PORT"), "3000")),
 	)
 
 	if err := internal.AddServices(s); err != nil {
@@ -26,7 +28,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := s.Start(); err != nil {
-		fmt.Println(err)
+	fmt.Println("Server started at", s.Addr())
+	err := http.ListenAndServe(s.Addr(), s.Handler())
+	if err != nil {
+		fmt.Println("[error] starting app:", err)
 	}
 }

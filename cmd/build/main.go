@@ -2,29 +2,22 @@ package main
 
 import (
 	_ "embed"
+	"markito/internal"
 	"os"
 	"os/exec"
 
-	"markito/internal/config"
-
-	"github.com/leapkit/core/assets"
 	"github.com/paganotoni/tailo"
 )
 
 func main() {
-	err := assets.Embed("./internal/assets", "./public")
-	if err != nil {
-		panic(err)
-	}
-
-	tailo.Build(config.TailoOptions...)
+	tailo.Build(internal.TailoOptions...)
 
 	cmd := exec.Command("go", "build")
 	cmd.Args = append(
 		cmd.Args,
 
 		`--ldflags`, `-linkmode=external -extldflags="-static"`,
-		`-tags`, `osusergo,netgo`,
+		`-tags`, `osusergo,netgo,musl`,
 		`-buildvcs=false`,
 		"-o", "bin/app",
 		"cmd/app/main.go",

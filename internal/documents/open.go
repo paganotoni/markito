@@ -4,14 +4,13 @@ import (
 	"markito/internal/markdown"
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
 	"github.com/leapkit/core/render"
 )
 
 func Open(w http.ResponseWriter, r *http.Request) {
 	documents := r.Context().Value("documentsService").(*service)
 
-	doc, err := documents.Find(chi.URLParam(r, "id"))
+	doc, err := documents.Find(r.PathValue("id"))
 	if err != nil {
 		http.NotFound(w, r)
 		return
