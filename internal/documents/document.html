@@ -1,25 +1,24 @@
 <% contentFor("savedData"){ %>
     <%= if (doc == nil) { %>
-        <a href="#" 
-            hx-post="/save" 
-            hx-target="#link-container" 
+        <a href="#"
+            hx-post="/save"
+            hx-target="#link-container"
             hx-include="[name='MarkdownContent'], [id='DocumentID']"
             hx-on::after-request="htmx.trigger('#flash', 'htmx:notify', {message: '✅ Document saved successfully.'})"
             class="bg-blue-500 hover:bg-blue-600 text-white py-2.5 px-2 rounded-md">
             ⬆️ Save Document
         </a>
-    <% } else {%>    
+    <% } else {%>
         <%= partial("documents/saved.html", {}) %>
     <% }%>
 <% } %>
 
-<div class="grid grid-cols-2 w-full h-full gap-5">
-    <div class="flex-grow max-h-[calc(100vh-130px)] relative h-full bg-white border-2 border-gray-400">
-        <textarea 
-            class="rounded h-full w-full p-5 h-auto border-0" 
-
-            hx-post="/parse" hx-trigger="keyup changed delay:200ms, change delay:200ms" 
-            hx-target="#htmlcontainer" id="MarkdownContent" 
+<div class="grid grid-cols-2 w-full h-full gap-5 max-h-[calc(100vh-130px)]">
+    <div class="relative max-h-inherit">
+        <textarea
+            class="w-full h-full rounded-lg p-5 bg-white border-gray-400 resize-none box-border focus:ring-blue-400 focus:border-blue-400"
+            hx-post="/parse" hx-trigger="keyup changed delay:200ms, change delay:200ms"
+            hx-target="#htmlcontainer" id="MarkdownContent"
             name="MarkdownContent"
             _="on keydown
                 if the event's key is 'Tab'
@@ -29,30 +28,36 @@
                         me.selectionStart,
                         me.selectionStart,
                         'end'
-                      )
-            "
-            ><%= content %>
-        </textarea>
+                    )
+                end
+                on scroll
+                    set #htmlcontainer's scrollTop to my scrollTop
+                end
+            "><%= content %></textarea>
 
         <%= partial("copy.html", {
             "message": "✅ Markdown copied to clipboard",
-            "targetID": "#MarkdownContent", 
-            "class":"absolute cursor-pointer rounded-lg hover:bg-gray-300 top-2 right-2 p-3 bg-gray-200/80",
+            "targetID": "#MarkdownContent",
+            "class":"absolute top-3 right-3 p-3 w-10 h-10 flex items-center justify-center bg-gray-200/80 cursor-pointer rounded-md hover:bg-gray-300",
         }) %>
     </div>
 
-    <div class="relative flex-grow-x max-h-[calc(100vh-130px)] border border-gray-400 bg-gray-200">
-        <div id="htmlcontainer" class="w-full max-h-full h-full rounded p-5 py-5 pb-10 overflow-scroll" _="on DOMSubtreeModified hljs.highlightAll()">
-            <%= html %>
-            <script>
-                hljs.highlightAll("#htmlcontainer")
-            </script>
-        </div>
+    <div class="relative max-h-inherit">
+        <div
+            id="htmlcontainer"
+            class="w-full h-full p-5 border border-gray-400 bg-gray-150 rounded-lg overflow-scroll"
+            _="
+                on DOMSubtreeModified hljs.highlightAll() end
+                on scroll set #MarkdownContent's scrollTop to my scrollTop end
+            "><%= html %></div>
+        <script>
+            hljs.highlightAll("#htmlcontainer")
+        </script>
         <%= partial("copy.html", {
             "message": "✅ HTML copied to clipboard",
-            "targetID": "#htmlcontainer", 
-            "class":"absolute cursor-pointer rounded-lg hover:bg-gray-300 top-2 right-2 p-3 bg-gray-200/80"
+            "targetID": "#htmlcontainer",
+            "class":"absolute top-2 right-3 p-3 w-10 h-10 flex items-center justify-center bg-gray-300/80 cursor-pointer rounded-md hover:bg-gray-400",
         }) %>
     </div>
-        
+
 </div>

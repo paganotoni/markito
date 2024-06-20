@@ -9,4 +9,12 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
   ],
+
+  theme: {
+    extend: {
+      maxHeight: {
+        'inherit': 'inherit',
+      }
+    },
+  },
 }
