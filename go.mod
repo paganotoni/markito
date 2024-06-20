@@ -2,10 +2,7 @@ module markito
 
 go 1.22.0
 
-toolchain go1.22.4
-
 require (
-	github.com/go-chi/chi/v5 v5.0.10
 	github.com/gomarkdown/markdown v0.0.0-20231222211730-1d6d20845b47
 	github.com/jmoiron/sqlx v1.3.5
 	github.com/leapkit/core v1.5.1
