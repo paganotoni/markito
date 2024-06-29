@@ -6,7 +6,8 @@ import (
 	"markito/internal"
 	"net/http"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/leapkit/leapkit/core/tools/envload"
+	_ "github.com/mattn/go-sqlite3" // Database driver
 )
 
 func main() {
