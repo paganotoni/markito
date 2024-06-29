@@ -14,21 +14,11 @@ import (
 	"github.com/leapkit/leapkit/core/db"
 	"github.com/leapkit/leapkit/core/render"
 	"github.com/leapkit/leapkit/core/server"
-	"github.com/paganotoni/tailo"
 )
 
 var (
 	//go:embed *.html **/*.html
 	tmpls embed.FS
-
-	// TailoOptions allow to define how to compile
-	// the tailwind css files, which is the input and
-	// what will be the output.
-	TailoOptions = []tailo.Option{
-		tailo.UseInputPath("internal/assets/application.css"),
-		tailo.UseOutputPath("public/application.css"),
-		tailo.UseConfigPath("tailwind.config.js"),
-	}
 
 	// DB is the database connection builder function
 	// that will be used by the application based on the driver and
