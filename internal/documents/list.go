@@ -3,7 +3,7 @@ package documents
 import (
 	"net/http"
 
-	"github.com/leapkit/core/render"
+	"github.com/leapkit/leapkit/core/render"
 )
 
 func List(w http.ResponseWriter, r *http.Request) {

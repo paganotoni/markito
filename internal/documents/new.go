@@ -6,7 +6,7 @@ import (
 
 	"markito/internal/markdown"
 
-	"github.com/leapkit/core/render"
+	"github.com/leapkit/leapkit/core/render"
 )
 
 //go:embed default.md

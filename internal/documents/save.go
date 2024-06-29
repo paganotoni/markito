@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/leapkit/core/render"
+	"github.com/leapkit/leapkit/core/render"
 	"github.com/lithammer/shortuuid/v4"
 )
 

@@ -7,24 +7,19 @@ import (
 	"markito/internal/helpers"
 	"markito/internal/markdown"
 	"markito/public"
+	"net/http"
 	"os"
 
-	"github.com/leapkit/core/assets"
-	"github.com/leapkit/core/db"
-	"github.com/leapkit/core/render"
-	"github.com/leapkit/core/server"
-	"github.com/leapkit/core/session"
+	"github.com/leapkit/leapkit/core/assets"
+	"github.com/leapkit/leapkit/core/db"
+	"github.com/leapkit/leapkit/core/render"
+	"github.com/leapkit/leapkit/core/server"
 	"github.com/paganotoni/tailo"
 )
 
 var (
 	//go:embed *.html **/*.html
 	tmpls embed.FS
-
-	// Assets is the manager for the public assets
-	// it allows to watch for changes and reload the assets
-	// when changes are made.
-	Assets = assets.NewManager(public.Files)
 
 	// TailoOptions allow to define how to compile
 	// the tailwind css files, which is the input and
@@ -35,22 +30,32 @@ var (
 		tailo.UseConfigPath("tailwind.config.js"),
 	}
 
-	// DatabaseURL to connect and interact with our database instance.
-	DatabaseURL = cmp.Or(os.Getenv("DATABASE_URL"), "markito.db")
-
 	// DB is the database connection builder function
 	// that will be used by the application based on the driver and
 	// connection string.
-	DB = db.ConnectionFn(DatabaseURL, db.WithDriver("sqlite3"))
+	DB = db.ConnectionFn(
+		cmp.Or(os.Getenv("DATABASE_URL"), "markito.db"),
+		db.WithDriver("sqlite3"),
+	)
 )
 
-func AddRoutes(r server.Router) error {
-	// LeapKit Middleware
-	r.Use(session.Middleware(
-		cmp.Or(os.Getenv("SESSION_SECRET"), "d720c059-9664-4980-8169-1158e167ae57"),
-		cmp.Or(os.Getenv("SESSION_NAME"), "markito_session"),
-	))
+type Server interface {
+	Addr() string
+	Handler() http.Handler
+}
 
+func New() (Server, error) {
+	r := server.New(
+		server.WithHost(cmp.Or(os.Getenv("HOST"), "0.0.0.0")),
+		server.WithPort(cmp.Or(os.Getenv("PORT"), "3000")),
+
+		server.WithSession(
+			cmp.Or(os.Getenv("SESSION_SECRET"), "d720c059-9664-4980-8169-1158e167ae57"),
+			cmp.Or(os.Getenv("SESSION_NAME"), "markito_session"),
+		),
+	)
+
+	assets := assets.NewManager(public.Files)
 	r.Use(render.Middleware(
 		render.TemplateFS(tmpls, "internal"),
 
@@ -58,9 +63,12 @@ func AddRoutes(r server.Router) error {
 		render.WithHelpers(helpers.All),
 		render.WithHelpers(render.AllHelpers),
 		render.WithHelpers(map[string]any{
-			"assetPath": Assets.PathFor,
+			"assetPath": assets.PathFor,
 		}),
 	))
+
+	// Services that will be injected in the context
+	r.Use(server.InCtxMiddleware("documentsService", documents.NewService(DB)))
 
 	r.HandleFunc("GET /{$}", documents.New)
 	r.HandleFunc("POST /parse", markdown.Parse)
@@ -70,21 +78,7 @@ func AddRoutes(r server.Router) error {
 
 	// Mounting the assets manager at the end of the routes
 	// so that it can serve the public assets.
-	r.HandleFunc(Assets.HandlerPattern(), Assets.HandlerFn)
+	r.HandleFunc(assets.HandlerPattern(), assets.HandlerFn)
 
-	return nil
-}
-
-// AddServices is a function that will be called by the server
-// to inject services in the context.
-func AddServices(r server.Router) error {
-	conn, err := DB()
-	if err != nil {
-		return err
-	}
-
-	// Services that will be injected in the context
-	r.Use(server.InCtxMiddleware("documentsService", documents.NewService(conn)))
-
-	return nil
+	return r, nil
 }

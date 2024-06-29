@@ -1,6 +1,6 @@
 ## 📓 Markito
 
-Markito is a tool to create, edit and share Markdown content. I named it Markito because of the [Markdown](https://es.wikipedia.org/wiki/Markdown) language, my good old friend (_Marcos or Marquitos_ 😊), and the old and renowned Roman Emperor: [_Marcus Aurelius_](https://www.britannica.com/biography/Marcus-Aurelius-Roman-emperor). 
+Markito is a tool to create, edit and share Markdown content. I named it Markito because of the [Markdown](https://es.wikipedia.org/wiki/Markdown) language, my good old friend (_Marcos or Marquitos_ 😊), and the old and renowned Roman Emperor: [_Marcus Aurelius_](https://www.britannica.com/biography/Marcus-Aurelius-Roman-emperor).
 
 To know more go and see the [live version of Markito](https://markito-production.up.railway.app).
 
@@ -8,7 +8,7 @@ To know more go and see the [live version of Markito](https://markito-production
 This is the list of technologies I've used to make this work:
 
 - [Go](https://golang.org/)
-- [LeapKit](https://github.com/leapkit/core)
+- [LeapKit](https://github.com/leapkit/leapkit/core)
 - [SQLite](https://sqlite.org)
 - [HTMX](https://htmx.org/)
 - [TailwindCSS](https://tailwindcss.com/)
@@ -42,5 +42,3 @@ Also, these are some my endeavours (just in case 😊):
 
 - [SymbolSecurity](https://symbolsecurity.com)
 - [Wawandco](https://wawand.co)
-
-
