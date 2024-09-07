@@ -27,6 +27,7 @@ env:
     GO_ENV: production
     PORT: 3000
     DATABASE_URL: /data/markito/database.db
+    BASE_URL: "https://markito.antoniopagano.com"
   secret:
     - SESSION_SECRET
     - SESSION_NAME
@@ -44,7 +45,7 @@ traefik:
   args:
     entryPoints.web.address: ":80"
     entryPoints.websecure.address: ":443"
-    certificatesResolvers.letsencrypt.acme.email: "antonio@pagano.id"
+    certificatesResolvers.letsencrypt.acme.email: "a@antoniopagano.com"
     certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
     certificatesResolvers.letsencrypt.acme.httpchallenge: true
     certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
