@@ -7,7 +7,6 @@ servers:
     options:
       "add-host": host.docker.internal:host-gateway
     labels:
-      # traefik.http.services.markito-web.loadbalancer.server.port: 3000
       traefik.http.routers.markito.rule: "Host(`markito.antoniopagano.com`)"
       traefik.http.routers.markito_secure.rule: "Host(`markito.antoniopagano.com`)"
       traefik.http.routers.markito_secure.entrypoints: websecure
@@ -43,7 +42,6 @@ traefik:
     volume:
       - "/letsencrypt/acme.json:/letsencrypt/acme.json"
   args:
-    entryPoints.web.address: ":80"
     entryPoints.websecure.address: ":443"
     certificatesResolvers.letsencrypt.acme.email: "antonio@pagano.id"
     certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
