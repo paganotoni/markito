@@ -60,6 +60,7 @@ func New() (Server, error) {
 	r.Use(server.InCtxMiddleware("documentsService", documents.NewService(DB)))
 
 	r.HandleFunc("GET /{$}", documents.New)
+	r.HandleFunc("GET /health", healthCheck)
 	r.HandleFunc("POST /parse", markdown.Parse)
 	r.HandleFunc("POST /save", documents.Save)
 	r.HandleFunc("GET /{id}", documents.Open)
