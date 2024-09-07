@@ -21,7 +21,7 @@ WORKDIR /bin/
 
 # Copying binaries
 COPY --from=builder /go/bin/kit .
-COPY --from=builder /src/todox/bin/app .
+COPY --from=builder /src/app/bin/app .
 
 # Copying migrations folder
 COPY --from=builder /src/todox/internal/migrations migrations
