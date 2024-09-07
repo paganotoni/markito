@@ -1,7 +1,6 @@
 package helpers
 
 import (
-	"github.com/leapkit/leapkit/core/render"
 	"github.com/leapkit/leapkit/core/render/hctx"
 )
 
@@ -13,5 +12,4 @@ var All = hctx.Merge(
 		"urlWithParam": urlWithParams,
 		"documentLink": documentLink,
 	},
-	render.AllHelpers,
 )
