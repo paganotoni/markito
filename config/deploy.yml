@@ -7,7 +7,7 @@ servers:
     options:
       "add-host": host.docker.internal:host-gateway
     labels:
-      traefik.http.services.markito-web.loadbalancer.server.port: 3000
+      traefik.http.services.markito-web.loadbalancer.server.port: 3001
       traefik.http.routers.markito.rule: "Host(`markito.antoniopagano.com`)"
       traefik.http.routers.markito_secure.rule: "Host(`markito.antoniopagano.com`)"
       traefik.http.routers.markito_secure.entrypoints: websecure
@@ -26,13 +26,14 @@ registry:
 env:
   clear:
     GO_ENV: production
+    PORT: 3001
     DATABASE_URL: /data/markito/database.db
   secret:
     - SESSION_SECRET
     - SESSION_NAME
 
 healthcheck:
-  cmd: wget -qO- http://localhost:3000/health
+  cmd: wget -qO- http://localhost:3001/health
   max_attempts: 3
 
 traefik:
