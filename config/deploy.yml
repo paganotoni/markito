@@ -3,7 +3,7 @@ image: paganotoni/markito
 servers:
   web:
     hosts:
-      - 178.156.136.27
+      - <%= ENV['PRODUCTION_SERVER_IP'] %>
     options:
       "add-host": host.docker.internal:host-gateway
     labels:
@@ -49,3 +49,8 @@ traefik:
     certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
     certificatesResolvers.letsencrypt.acme.httpchallenge: true
     certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+
+builder:
+  multiarch: false
+  cache:
+    type: gha
