@@ -7,7 +7,7 @@ import (
 	"markito/internal/migrations"
 
 	"github.com/leapkit/leapkit/core/db"
-	_ "github.com/mattn/go-sqlite3" // sqlite3 driver
+	_ "modernc.org/sqlite" // sqlite3 driver
 )
 
 // The migrate command is used to ship our application
