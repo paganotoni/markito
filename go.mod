@@ -7,7 +7,6 @@ require (
 	github.com/jmoiron/sqlx v1.3.5
 	github.com/leapkit/leapkit/core v0.0.36
 	github.com/lithammer/shortuuid/v4 v4.0.0
-	github.com/mattn/go-sqlite3 v1.14.22
 	modernc.org/sqlite v1.33.1
 )
 
@@ -22,6 +21,7 @@ require (
 	// sqlite dependencies
 	github.com/hashicorp/golang-lru/v2 v2.0.7 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mattn/go-sqlite3 v1.14.22 // indirect
 	github.com/ncruces/go-strftime v0.1.9 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
 	golang.org/x/sys v0.22.0 // indirect
