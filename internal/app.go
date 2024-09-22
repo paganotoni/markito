@@ -25,7 +25,7 @@ var (
 	// connection string.
 	DB = db.ConnectionFn(
 		cmp.Or(os.Getenv("DATABASE_URL"), "markito.db"),
-		db.WithDriver("sqlite3"),
+		db.WithDriver("sqlite"),
 	)
 )
 
