@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	_ "github.com/leapkit/leapkit/core/tools/envload"
-	_ "github.com/mattn/go-sqlite3" // Database driver
+	_ "modernc.org/sqlite" // Database driver
 )
 
 func main() {
