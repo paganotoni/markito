@@ -12,6 +12,12 @@ servers:
       traefik.http.routers.markito_secure.rule: "Host(`markito.antoniopagano.com`)"
       traefik.http.routers.markito_secure.entrypoints: websecure
       traefik.http.routers.markito_secure.tls.certresolver: letsencrypt
+  cron:
+    hosts:
+      - <%= ENV['PRODUCTION_SERVER_IP'] %>
+    cmd: bash -c "cat config/crontab | crontab - && cron -f"
+    options:
+      user: root
 
 volumes:
   - /data/markito:/data/markito

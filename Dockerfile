@@ -18,13 +18,18 @@ RUN go build -tags osusergo,netgo -buildvcs=false -o bin/migrate ./cmd/migrate
 RUN go build -tags osusergo,netgo -buildvcs=false -o bin/app ./cmd/app
 
 
+# Building the app
+RUN go build -tags osusergo,netgo -buildvcs=false -o bin/tasks ./cmd/tasks
+
+
 FROM alpine
-RUN apk add --no-cache tzdata ca-certificates
+RUN apk add --no-cache tzdata ca-certificates cron
 WORKDIR /bin/
 
 # Copying binaries
 COPY --from=builder /src/app/bin/migrate .
 COPY --from=builder /src/app/bin/app .
+COPY --from=builder /src/app/bin/tasks .
 
 SHELL ["/bin/ash", "-c"]
 CMD migrate && app
