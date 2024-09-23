@@ -23,7 +23,7 @@ RUN go build -tags osusergo,netgo -buildvcs=false -o bin/tasks ./cmd/tasks
 
 
 FROM alpine
-RUN apk add --no-cache tzdata ca-certificates cron
+RUN apk add --no-cache tzdata ca-certificates
 WORKDIR /bin/
 
 # Copying binaries
