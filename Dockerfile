@@ -32,10 +32,6 @@ COPY --from=builder /src/app/bin/tasks /bin/
 COPY --from=builder /src/app/config/crontab /usr/config/crontab
 
 WORKDIR /usr/
-RUN which app
-RUN which migrate
-
-RUN cat config/crontab
 
 SHELL ["/bin/ash", "-c"]
 CMD migrate && app
