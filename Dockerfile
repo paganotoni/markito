@@ -31,7 +31,7 @@ COPY --from=builder /src/app/bin/migrate .
 COPY --from=builder /src/app/bin/app .
 COPY --from=builder /src/app/bin/tasks .
 
-COPY --from=builder /src/app/config/crontab .
+COPY --from=builder /src/app/config/crontab /config/crontab
 
 SHELL ["/bin/ash", "-c"]
 CMD migrate && app

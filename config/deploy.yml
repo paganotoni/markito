@@ -15,7 +15,7 @@ servers:
   cron:
     hosts:
       - <%= ENV['PRODUCTION_SERVER_IP'] %>
-    cmd: bash -c "cat crontab | crontab - && cron -f
+    cmd: bash -c "cat /config/crontab | crontab - && cron -f
     options:
       user: root
 
