@@ -24,14 +24,18 @@ RUN go build -tags osusergo,netgo -buildvcs=false -o bin/tasks ./cmd/tasks
 
 FROM alpine
 RUN apk add --no-cache tzdata ca-certificates bash
-WORKDIR /bin/
 
 # Copying binaries
-COPY --from=builder /src/app/bin/migrate .
-COPY --from=builder /src/app/bin/app .
-COPY --from=builder /src/app/bin/tasks .
+COPY --from=builder /src/app/bin/migrate /bin/
+COPY --from=builder /src/app/bin/app /bin/
+COPY --from=builder /src/app/bin/tasks /bin/
+COPY --from=builder /src/app/config/crontab /usr/config/crontab
 
-COPY --from=builder /src/app/config/crontab /config/crontab
+WORKDIR /usr/
+RUN which app
+RUN which migrate
+
+RUN cat config/crontab
 
 SHELL ["/bin/ash", "-c"]
 CMD migrate && app
