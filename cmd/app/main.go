@@ -1,13 +1,12 @@
 package main
 
 import (
-	// sqlite3 driver
 	"fmt"
 	"markito/internal"
 	"net/http"
 
 	_ "github.com/leapkit/leapkit/core/tools/envload"
-	_ "modernc.org/sqlite" // Database driver
+	_ "github.com/mattn/go-sqlite3" // sqlite3 driver
 )
 
 func main() {

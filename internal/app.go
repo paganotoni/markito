@@ -4,6 +4,7 @@ import (
 	"cmp"
 	"embed"
 	"markito/internal/documents"
+	"markito/internal/health"
 	"markito/internal/helpers"
 	"markito/internal/markdown"
 	"markito/public"
@@ -60,7 +61,7 @@ func New() (Server, error) {
 	r.Use(server.InCtxMiddleware("documentsService", documents.NewService(DB)))
 
 	r.HandleFunc("GET /{$}", documents.New)
-	r.HandleFunc("GET /health", healthCheck)
+	r.HandleFunc("GET /health", health.Check(DB))
 	r.HandleFunc("POST /parse", markdown.Parse)
 	r.HandleFunc("POST /save", documents.Save)
 	r.HandleFunc("GET /{id}", documents.Open)

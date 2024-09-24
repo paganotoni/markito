@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"markito/internal"
 
-	_ "modernc.org/sqlite" // sqlite3 driver
+	_ "github.com/mattn/go-sqlite3" // sqlite3 driver
 )
 
 func main() {

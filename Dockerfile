@@ -1,4 +1,5 @@
 FROM golang:1.22-alpine AS builder
+RUN apk add --no-cache build-base
 
 WORKDIR /src/app
 ADD go.mod .
