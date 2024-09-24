@@ -6,16 +6,16 @@
         <a href="<%= documentLink(doc.ID) %>" class="underline"><%= doc.ID %></a>
     </span>
 
-    <%= partial("copy.html", {
+    <%= partial("documents/copy.html", {
         "message": "✅ Link copied to clipboard",
-        "targetID": "#documentIDLink", 
+        "targetID": "#documentIDLink",
         "class": ""
     }) %>
 
-    <div class="bg-blue-500 p-1 px-2.5 rounded-lg cursor-pointer" 
+    <div class="bg-blue-500 p-1 px-2.5 rounded-lg cursor-pointer"
         hx-post="/save" hx-target="#link-container"
         hx-include="[name='MarkdownContent'], [id='DocumentID']"
-        hx-on::before-cleanup-element="htmx.trigger('#flash', 'htmx:notify',  {'message': 'Document saved'})"> 
-        Save 
+        hx-on::before-cleanup-element="htmx.trigger('#flash', 'htmx:notify',  {'message': 'Document saved'})">
+        Save
     </div>
 </span>
