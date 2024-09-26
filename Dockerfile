@@ -30,7 +30,6 @@ RUN apk add --no-cache tzdata ca-certificates bash
 COPY --from=builder /src/app/bin/migrate /bin/
 COPY --from=builder /src/app/bin/app /bin/
 COPY --from=builder /src/app/bin/tasks /bin/
-COPY --from=builder /src/app/config/crontab /usr/config/crontab
 
 WORKDIR /usr/
 
