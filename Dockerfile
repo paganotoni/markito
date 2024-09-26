@@ -25,7 +25,6 @@ RUN apk add --no-cache tzdata ca-certificates bash
 # Copying binaries
 COPY --from=builder /src/app/bin/migrate /bin/
 COPY --from=builder /src/app/bin/app /bin/
-COPY --from=builder /src/app/bin/tasks /bin/
 
 WORKDIR /usr/
 
