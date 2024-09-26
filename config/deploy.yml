@@ -1,23 +1,7 @@
 service: markito
 image: paganotoni/markito
 servers:
-  web:
-    hosts:
-      - <%= ENV['PRODUCTION_SERVER_IP'] %>
-    options:
-      "add-host": host.docker.internal:host-gateway
-    labels:
-      traefik.http.services.markito-web.loadbalancer.server.port: 3000
-      traefik.http.routers.markito.rule: "Host(`markito.antoniopagano.com`)"
-      traefik.http.routers.markito_secure.rule: "Host(`markito.antoniopagano.com`)"
-      traefik.http.routers.markito_secure.entrypoints: websecure
-      traefik.http.routers.markito_secure.tls.certresolver: letsencrypt
-  cron:
-    hosts:
-      - <%= ENV['PRODUCTION_SERVER_IP'] %>
-    cmd: bash -c "cat /usr/config/crontab | crontab - && crond -f"
-    options:
-      user: root
+  - <%= ENV["PRODUCTION_SERVER_IP"] %>
 
 volumes:
   - /data/markito:/data/markito
@@ -31,32 +15,22 @@ registry:
 env:
   clear:
     GO_ENV: production
-    PORT: 3000
     DATABASE_URL: /data/markito/database.db
     BASE_URL: "https://markito.antoniopagano.com"
   secret:
     - SESSION_SECRET
     - SESSION_NAME
 
-healthcheck:
-  cmd: wget -qO- http://localhost:3000/health
-  max_attempts: 3
-
-traefik:
-  options:
-    publish:
-      - "443:443"
-    volume:
-      - "/letsencrypt/acme.json:/letsencrypt/acme.json"
-  args:
-    entryPoints.web.address: ":80"
-    entryPoints.websecure.address: ":443"
-    certificatesResolvers.letsencrypt.acme.email: "a@antoniopagano.com"
-    certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
-    certificatesResolvers.letsencrypt.acme.httpchallenge: true
-    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+proxy:
+  host: markito.antoniopagano.com
+  ssl: true
+  app_port: 3000
+  healthcheck:
+    interval: 2
+    timeout: 2
+    path: /health
 
 builder:
-  multiarch: false
+  arch: amd64
   cache:
     type: gha
