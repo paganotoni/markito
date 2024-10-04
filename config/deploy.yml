@@ -25,6 +25,7 @@ proxy:
   host: markito.antoniopagano.com
   ssl: true
   app_port: 3000
+  forward_headers: true
   healthcheck:
     interval: 2
     timeout: 2
