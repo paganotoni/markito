@@ -1,7 +1,11 @@
 service: markito
 image: paganotoni/markito
 servers:
-  - <%= ENV["PRODUCTION_SERVER_IP"] %>
+  web:
+    hosts:
+      - <%= ENV["PRODUCTION_SERVER_IP"] %>
+    options:
+      cpus: 0.5
 
 volumes:
   - /data/markito:/data/markito
