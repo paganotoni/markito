@@ -4,9 +4,8 @@ concurrency:
   group: production
   cancel-in-progress: true
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,7 +22,7 @@ jobs:
         with:
           ruby-version: 3.3.0
           bundler-cache: true
-      - run: gem install kamal -v 2.4.0
+      - run: gem install kamal -v 2.5.2
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -31,4 +30,4 @@ jobs:
       - name: Expose GitHub Runtime for cache
         uses: crazy-max/ghaction-github-runtime@v3
       - run: kamal registry login
-      - run: kamal redeploy
+      - run: kamal deploy
