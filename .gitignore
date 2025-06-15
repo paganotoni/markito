@@ -2,5 +2,4 @@ internal/app/public/application.css
 bin/*
 .env
 markito.db*
-public/*.css
-public/**/*.js
+internal/system/assets/application.css
