@@ -6,8 +6,6 @@ ADD go.mod .
 RUN go mod download
 
 ADD . .
-# Copy everything in assets to the public folder
-RUN cp internal/assets/* public/
 
 # Downloading the tailwind binary, musl because this is an Alpine image, and
 # running the build command
