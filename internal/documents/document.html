@@ -18,7 +18,7 @@
         <textarea
             class="w-full h-full rounded-lg p-5 bg-white border-gray-400 resize-none box-border focus:ring-blue-400 focus:border-blue-400"
             hx-post="/parse" hx-trigger="keyup changed delay:200ms, change delay:200ms"
-            hx-target="#htmlcontainer" id="MarkdownContent"
+            hx-target="#htmlcontainer article" id="MarkdownContent"
             name="MarkdownContent"
             _="on keydown
                 if the event's key is 'Tab'
@@ -42,14 +42,18 @@
         }) %>
     </div>
 
-    <div class="relative max-h-inherit">
-        <div
-            id="htmlcontainer"
+    <div class="relative max-h-inherit bg-white">
+        <div id="htmlcontainer"
             class="w-full h-full p-5 border border-gray-400 bg-gray-150 rounded-lg overflow-scroll"
             _="
                 on DOMSubtreeModified hljs.highlightAll() end
                 on scroll set #MarkdownContent's scrollTop to my scrollTop end
-            "><%= html %></div>
+            ">
+
+            <article class="prose prose-headings:mt-0 prose-headings:mb-0 prose-p:mt-0">
+                <%= html %>
+            </article>
+        </div>
         <script>
             hljs.highlightAll("#htmlcontainer")
         </script>

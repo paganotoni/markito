@@ -3,8 +3,8 @@ package health
 import (
 	"net/http"
 
-	"github.com/leapkit/leapkit/core/db"
-	"github.com/leapkit/leapkit/core/server"
+	"go.leapkit.dev/core/db"
+	"go.leapkit.dev/core/server"
 )
 
 func Check(db db.ConnFn) func(w http.ResponseWriter, r *http.Request) {

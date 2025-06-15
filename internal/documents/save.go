@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/leapkit/leapkit/core/render"
 	"github.com/lithammer/shortuuid/v4"
+	"go.leapkit.dev/core/render"
 )
 
 // Save the content of the document in the database, if there is an id present it

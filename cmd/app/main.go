@@ -5,8 +5,8 @@ import (
 	"markito/internal"
 	"net/http"
 
-	_ "github.com/leapkit/leapkit/core/tools/envload"
 	_ "github.com/mattn/go-sqlite3" // sqlite3 driver
+	_ "go.leapkit.dev/core/tools/envload"
 )
 
 func main() {

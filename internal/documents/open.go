@@ -4,7 +4,7 @@ import (
 	"markito/internal/markdown"
 	"net/http"
 
-	"github.com/leapkit/leapkit/core/render"
+	"go.leapkit.dev/core/render"
 )
 
 func Open(w http.ResponseWriter, r *http.Request) {

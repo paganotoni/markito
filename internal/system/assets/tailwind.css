@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+/* for line numbers */
+[class*="language-"] {
+    counter-reset: linenumber;
+}
+
+pre {
+    max-width: 100%;
+    overflow: scroll;
+    counter-reset: line;
+}
+
+pre code {
+    max-width: 100%;
+}
+
+span.line {
+    display: inline-block;
+    width: 100%;
+    counter-increment: linenumber;
+}
+
+span.line:nth-child(odd) {
+    background: #f0f0f0;
+}
+
+span.line:before {
+    content: counter(linenumber);
+    font-size: 100%;
+    width: 2em;
+    display: inline-block;
+    font-weight: normal;
+    color: black;
+    border-right: 1px solid black;
+    margin-right: 5px;
+    padding-right: 5px;
+    text-align: right;
+}

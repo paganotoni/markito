@@ -8,7 +8,7 @@ To know more go and see the [live version of Markito](https://markito-production
 This is the list of technologies I've used to make this work:
 
 - [Go](https://golang.org/)
-- [LeapKit](https://github.com/leapkit/leapkit/core)
+- [LeapKit](https://go.leapkit.dev/core)
 - [SQLite](https://sqlite.org)
 - [HTMX](https://htmx.org/)
 - [TailwindCSS](https://tailwindcss.com/)

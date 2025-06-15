@@ -3,18 +3,18 @@ package internal
 import (
 	"cmp"
 	"embed"
+	"net/http"
+	"os"
+
 	"markito/internal/documents"
 	"markito/internal/health"
 	"markito/internal/helpers"
 	"markito/internal/markdown"
-	"markito/public"
-	"net/http"
-	"os"
+	"markito/internal/system/assets"
 
-	"github.com/leapkit/leapkit/core/assets"
-	"github.com/leapkit/leapkit/core/db"
-	"github.com/leapkit/leapkit/core/render"
-	"github.com/leapkit/leapkit/core/server"
+	"go.leapkit.dev/core/db"
+	"go.leapkit.dev/core/render"
+	"go.leapkit.dev/core/server"
 )
 
 var (
@@ -39,7 +39,6 @@ func New() (Server, error) {
 	r := server.New(
 		server.WithHost(cmp.Or(os.Getenv("HOST"), "0.0.0.0")),
 		server.WithPort(cmp.Or(os.Getenv("PORT"), "3000")),
-		server.WithAssets(public.Files),
 
 		server.WithSession(
 			cmp.Or(os.Getenv("SESSION_SECRET"), "d720c059-9664-4980-8169-1158e167ae57"),
@@ -47,13 +46,12 @@ func New() (Server, error) {
 		),
 	)
 
-	assets := assets.NewManager(public.Files)
 	r.Use(render.Middleware(
 		render.TemplateFS(tmpls, "internal"),
 		render.WithDefaultLayout("layout.html"),
 		render.WithHelpers(helpers.All),
 		render.WithHelpers(map[string]any{
-			"assetPath": assets.PathFor,
+			"assetPath": assets.Manager.PathFor,
 		}),
 	))
 
@@ -67,5 +65,6 @@ func New() (Server, error) {
 	r.HandleFunc("GET /{id}", documents.Open)
 	r.HandleFunc("GET /list/all", documents.List)
 
+	r.Folder(assets.Manager.HandlerPattern(), assets.Manager)
 	return r, nil
 }

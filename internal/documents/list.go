@@ -3,7 +3,7 @@ package documents
 import (
 	"net/http"
 
-	"github.com/leapkit/leapkit/core/render"
+	"go.leapkit.dev/core/render"
 )
 
 func List(w http.ResponseWriter, r *http.Request) {
@@ -21,5 +21,4 @@ func List(w http.ResponseWriter, r *http.Request) {
 	if err = rw.Render("documents/list.html"); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
-
 }

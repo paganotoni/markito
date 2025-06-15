@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"github.com/leapkit/leapkit/core/render/hctx"
+	"go.leapkit.dev/core/render/hctx"
 )
 
 // All used by the application to render the templates.

@@ -2,11 +2,10 @@ package documents
 
 import (
 	_ "embed"
+	"markito/internal/markdown"
 	"net/http"
 
-	"markito/internal/markdown"
-
-	"github.com/leapkit/leapkit/core/render"
+	"go.leapkit.dev/core/render"
 )
 
 //go:embed default.md

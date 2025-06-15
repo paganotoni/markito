@@ -4,7 +4,7 @@ import (
 	"errors"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/leapkit/leapkit/core/db"
+	"go.leapkit.dev/core/db"
 )
 
 type service struct {
