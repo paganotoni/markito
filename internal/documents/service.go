@@ -3,7 +3,6 @@ package documents
 import (
 	"errors"
 
-	"github.com/jmoiron/sqlx"
 	"go.leapkit.dev/core/db"
 )
 
@@ -11,17 +10,12 @@ type service struct {
 	dbFn db.ConnFn
 }
 
-func (s service) sqlx() *sqlx.DB {
-	conn, err := s.dbFn()
+func (s service) Save(id string, content string) error {
+	db, err := s.dbFn()
 	if err != nil {
-		return nil
+		return err
 	}
 
-	return sqlx.NewDb(conn, "sqlite3")
-}
-
-func (s service) Save(id string, content string) error {
-	db := s.sqlx()
 	if db == nil {
 		return errors.New("could not connect to database")
 	}
@@ -31,19 +25,26 @@ func (s service) Save(id string, content string) error {
 			documents (id, content)
 		VALUES
 			($1, $2)
-		ON CONFLICT (id) DO UPDATE SET content = $2`
-	_, err := db.Exec(sql, id, content)
+		ON CONFLICT (id) DO UPDATE SET content = $2
+	`
+
+	_, err = db.Exec(sql, id, content)
 	return err
 }
 
 func (s service) Find(id string) (*Document, error) {
-	db := s.sqlx()
+	db, err := s.dbFn()
+	if err != nil {
+		return nil, err
+	}
+
 	if db == nil {
 		return nil, errors.New("could not connect to database")
 	}
 
 	var doc Document
-	err := db.Get(&doc, "SELECT * FROM documents WHERE id = $1", id)
+	row := db.QueryRow("SELECT * FROM documents WHERE id = $1", id)
+	err = row.Scan(&doc.ID, &doc.Content)
 	if err != nil {
 		return nil, err
 	}
@@ -52,15 +53,26 @@ func (s service) Find(id string) (*Document, error) {
 }
 
 func (s service) List() ([]Document, error) {
-	db := s.sqlx()
-	if db == nil {
-		return nil, errors.New("could not connect to database")
+	db, err := s.dbFn()
+	if err != nil {
+		return nil, err
 	}
 
 	var doc []Document
-	err := db.Select(&doc, "SELECT * FROM documents")
+	rows, err := db.Query("SELECT * FROM documents")
 	if err != nil {
 		return nil, err
+	}
+
+	for rows.Next() {
+		var d Document
+
+		err := rows.Scan(&d.ID, &d.Content)
+		if err != nil {
+			return nil, err
+		}
+
+		doc = append(doc, d)
 	}
 
 	return doc, nil

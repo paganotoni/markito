@@ -4,7 +4,6 @@ go 1.24
 
 require (
 	github.com/gomarkdown/markdown v0.0.0-20231222211730-1d6d20845b47
-	github.com/jmoiron/sqlx v1.3.5
 	github.com/lithammer/shortuuid/v4 v4.0.0
 	github.com/mattn/go-sqlite3 v1.14.24
 	go.leapkit.dev/core v0.1.8
