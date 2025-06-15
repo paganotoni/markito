@@ -846,14 +846,19 @@
       margin-top: calc(var(--spacing) * 0);
     }
   }
-  .prose-headings\:mb-0 {
+  .prose-headings\:mb-1 {
     & :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
-      margin-bottom: calc(var(--spacing) * 0);
+      margin-bottom: calc(var(--spacing) * 1);
     }
   }
   .prose-p\:mt-0 {
     & :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
       margin-top: calc(var(--spacing) * 0);
+    }
+  }
+  .prose-li\:m-0 {
+    & :is(:where(li):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      margin: calc(var(--spacing) * 0);
     }
   }
 }
