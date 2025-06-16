@@ -18,49 +18,20 @@ func Page(saved, content Node) Node {
 		Lang("en"),
 		Class("h-full bg-gray-100"),
 		Head(
-			Meta(
-				Charset("UTF-8"),
-			),
-			Meta(
-				Name("viewport"),
-				Content("width=device-width, initial-scale=1.0"),
-			),
-			TitleEl(
-				Text("Markito"),
-			),
-			Link(
-				Rel("stylesheet"),
-				Href(pathFor("application.css")),
-			),
-			Script(
-				Src("https://unpkg.com/hyperscript.org@0.9.8"),
-			),
-			Script(
-				Src("https://unpkg.com/htmx.org@1.9.10"),
-			),
-			Link(
-				Rel("preconnect"),
-				Href("https://fonts.googleapis.com"),
-			),
-			Link(
-				Rel("preconnect"),
-				Href("https://fonts.gstatic.com"),
-				CrossOrigin(""),
-			),
-			Link(
-				Href("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap"),
-				Rel("stylesheet"),
-			),
-			Link(
-				Rel("stylesheet"),
-				Href("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"),
-			),
-			Script(
-				Src("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"),
-			),
-			Script(
-				Src(pathFor("application.js")),
-			),
+			Meta(Charset("UTF-8")),
+			Meta(Name("viewport"), Content("width=device-width, initial-scale=1.0")),
+			TitleEl(Text("Markito")),
+
+			Link(Rel("preconnect"), Href("https://fonts.googleapis.com")),
+			Link(Rel("preconnect"), Href("https://fonts.gstatic.com"), CrossOrigin("")),
+			Link(Rel("stylesheet"), Href("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css")),
+			Link(Href("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap"), Rel("stylesheet")),
+			Link(Rel("stylesheet"), Href(pathFor("application.css"))),
+
+			Script(Src("https://unpkg.com/hyperscript.org@0.9.8")),
+			Script(Src("https://unpkg.com/htmx.org@1.9.10")),
+			Script(Src("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js")),
+			Script(Src(pathFor("application.js"))),
 		),
 		Body(
 			Class("h-full flex flex-col min-h-full"),
@@ -69,9 +40,7 @@ func Page(saved, content Node) Node {
 				A(
 					Href("/"),
 					Class("font-bold text-lg heading-wide border-r border-1 border-white rounded-xl px-3"),
-					H1(
-						Text("📓 Markito"),
-					),
+					H1(Text("📓 Markito")),
 				),
 				Div(
 					Class("flex-grow"),
@@ -92,10 +61,7 @@ func Page(saved, content Node) Node {
 				),
 				Span(
 					Class("pl-4 flex flex-row items-center"),
-					Div(
-						ID("link-container"),
-						saved,
-					),
+					Div(ID("link-container"), saved),
 				),
 			),
 			Section(
