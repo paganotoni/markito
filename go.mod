@@ -3,6 +3,7 @@ module markito
 go 1.24
 
 require (
+	github.com/eduardolat/gomponents-lucide v1.4.0
 	github.com/gomarkdown/markdown v0.0.0-20231222211730-1d6d20845b47
 	github.com/lithammer/shortuuid/v4 v4.0.0
 	github.com/mattn/go-sqlite3 v1.14.24
@@ -12,7 +13,6 @@ require (
 )
 
 require (
-	github.com/eduardolat/gomponents-lucide v1.4.0 // indirect
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/securecookie v1.1.2 // indirect
