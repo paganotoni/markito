@@ -2,7 +2,6 @@ package documents
 
 import (
 	"net/http"
-	"strconv"
 
 	. "maragu.dev/gomponents"
 	. "maragu.dev/gomponents/html"
@@ -19,19 +18,11 @@ func All(w http.ResponseWriter, r *http.Request) {
 
 	var el Node
 	el = Group{
-		H2(
-			Class("bold text-lg underline"),
-			Text("Total ("+strconv.Itoa(len(docs))+")"),
-		),
+		H2(Class("bold text-lg underline"), Textf("Total (%d)", len(docs))),
 		Ul(
 			Map(docs, func(doc Document) Node {
 				return Li(
-					A(
-						Href(
-							link(doc.ID),
-						),
-						Text(doc.ID),
-					),
+					A(Href(link(doc.ID)), Text(doc.ID)),
 				)
 			}),
 		),
