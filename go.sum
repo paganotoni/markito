@@ -1,3 +1,5 @@
+github.com/eduardolat/gomponents-lucide v1.4.0 h1:i6X+ZWbPlo6wUcM0FE4vn+qiuxVdzwvYtDS2kUeupk0=
+github.com/eduardolat/gomponents-lucide v1.4.0/go.mod h1:psh1cYqhhF7cGjeJ3iY/uhioevuE7hZLUmPtjjMapGw=
 github.com/fsnotify/fsnotify v1.8.0 h1:dAwr6QBTBZIkG8roQaJjGof0pp0EeF+tNV7YBP3F/8M=
 github.com/fsnotify/fsnotify v1.8.0/go.mod h1:8jBTzvmWwFyi3Pb8djgCCO5IBqzKJ/Jwo8TRcHyHii0=
 github.com/gobuffalo/flect v1.0.2 h1:eqjPGSo2WmjgY2XlpGwo2NXgL3RucAKo4k4qQMNA5sA=
