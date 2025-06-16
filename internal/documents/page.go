@@ -8,6 +8,7 @@ import (
 	. "maragu.dev/gomponents/html"
 )
 
+// Page renders the content within the layout of the application
 func Page(saved, content Node) Node {
 	pathFor := func(path string) string {
 		p, _ := assets.Manager.PathFor(path)
