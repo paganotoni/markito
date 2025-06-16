@@ -17,3 +17,42 @@ window.flash = function(elem, message) {
         elem.classList.add('hidden');
     }, 3000);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  let el = document.querySelector("#MarkdownContent")
+  if( el == undefined) {
+    return
+  }
+
+  el.addEventListener("keydown", (e) => {
+    if (e.key !== 'Tab') {
+        return
+    }
+
+    e.preventDefault();
+    const textarea = e.target;
+    textarea.setRangeText(
+        '\t',
+        textarea.selectionStart,
+        textarea.selectionStart,
+        'end'
+    );
+  })
+
+
+  el.addEventListener("scroll", (e) => {
+    document.querySelector("#htmlcontainer").scrollTop = el.scrollTop;
+  })
+});
+
+
+document.addEventListener("DOMContentLoaded", ()  => {
+  let el = document.querySelector("#htmlcontainer")
+  el.addEventListener("DOMSubtreeModified", (e) => {
+    hljs.highlightAll();
+  })
+
+  el.addEventListener("scroll", (e) => {
+    document.querySelector("#MarkdownContent").scrollTop = el.scrollTop;
+  })
+})

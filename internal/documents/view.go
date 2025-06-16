@@ -21,22 +21,6 @@ func view(doc *Document, html template.HTML) Node {
 				ID("MarkdownContent"),
 				Name("MarkdownContent"),
 				Text(doc.Content),
-
-				Attr("_", `
-					on keydown
-	                	if the event's key is 'Tab'
-	                    	halt the event
-	                     	me.setRangeText(
-	                         	'\t',
-		                         me.selectionStart,
-		                         me.selectionStart,
-		                         'end'
-						    )
-	                end
-	                on scroll
-	                    set #htmlcontainer's scrollTop to my scrollTop
-	                end
-             `),
 			),
 
 			CopyEl(
@@ -51,11 +35,6 @@ func view(doc *Document, html template.HTML) Node {
 			Div(
 				Class("w-full h-full p-5 border border-gray-400 bg-gray-150 rounded-lg overflow-scroll"),
 				ID("htmlcontainer"),
-				Attr("_", `
-					on DOMSubtreeModified hljs.highlightAll() end
-                	on scroll set #MarkdownContent's scrollTop to my scrollTop end
-				`),
-
 				Article(
 					Class("prose prose-headings:mt-0 prose-headings:mb-1 prose-p:mt-0 prose-li:m-0"),
 					Raw(string(html)),

@@ -29,7 +29,6 @@ func Page(saved, content Node) Node {
 			Link(Href("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap"), Rel("stylesheet")),
 			Link(Rel("stylesheet"), Href(pathFor("application.css"))),
 
-			Script(Src("https://unpkg.com/hyperscript.org@0.9.8")),
 			Script(Src("https://unpkg.com/htmx.org@1.9.10")),
 			Script(Src("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js")),
 			Script(Src(pathFor("application.js"))),
@@ -69,7 +68,6 @@ func Page(saved, content Node) Node {
 				Class("flex-grow flex flex-col gap-4 w-full"),
 				Main(
 					Class("px-5 h-full py-5 flex flex-col gap-5"),
-					Attr("x-data"),
 					Section(
 						Class("w-full px-5 relative"),
 						Div(
