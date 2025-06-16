@@ -3,6 +3,7 @@ package documents
 import (
 	"fmt"
 
+	lucide "github.com/eduardolat/gomponents-lucide"
 	. "maragu.dev/gomponents"
 	hx "maragu.dev/gomponents-htmx"
 	. "maragu.dev/gomponents/components"
@@ -19,6 +20,7 @@ func CopyEl(message, targetID, class string) Node {
 
 		hx.On("click", fmt.Sprintf("copy(this.dataset.target, `%s`)", message)),
 		Data("target", targetID),
-		Text("📋"),
+
+		lucide.Copy(),
 	)
 }

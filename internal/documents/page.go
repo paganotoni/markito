@@ -40,8 +40,13 @@ func Page(saved, content Node) Node {
 				Class("bg-blue-400 p-3 px-5 flex flex-row gap-5 items-center text-white"),
 				A(
 					Href("/"),
-					Class("font-bold text-lg heading-wide border-r border-1 border-white rounded-xl px-3"),
-					H1(Text("📓 Markito")),
+					Class("font-bold text-lg heading-wide border-r border-1 border-white rounded-xl px-2 py-1"),
+					H1(
+						Class("flex flex-row items-center gap-1"),
+
+						lucide.Book(),
+						Text("Markito"),
+					),
 				),
 				Div(
 					Class("flex-grow"),
