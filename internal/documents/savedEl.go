@@ -1,8 +1,6 @@
 package documents
 
 import (
-	"markito/internal/helpers"
-
 	. "maragu.dev/gomponents"
 	hx "maragu.dev/gomponents-htmx"
 	. "maragu.dev/gomponents/html"
@@ -20,12 +18,12 @@ func SavedEl(doc Document) Node {
 		Span(
 			Class("hidden"),
 			ID("documentIDLink"),
-			Text(helpers.DocumentLink(doc.ID)),
+			Text(link(doc.ID)),
 		),
 
 		Span(
 			A(
-				Href(helpers.DocumentLink(doc.ID)),
+				Href(link(doc.ID)),
 				Class("underline"),
 				Text(doc.ID),
 			),

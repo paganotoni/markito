@@ -1,7 +1,7 @@
 package documents
 
 import (
-	"markito/internal/helpers"
+	"markito/internal/system/assets"
 
 	. "maragu.dev/gomponents"
 	hx "maragu.dev/gomponents-htmx"
@@ -9,6 +9,11 @@ import (
 )
 
 func Page(saved, content Node) Node {
+	pathFor := func(path string) string {
+		p, _ := assets.Manager.PathFor(path)
+		return p
+	}
+
 	return HTML(
 		Lang("en"),
 		Class("h-full bg-gray-100"),
@@ -25,7 +30,7 @@ func Page(saved, content Node) Node {
 			),
 			Link(
 				Rel("stylesheet"),
-				Href(helpers.AssetPath("application.css")),
+				Href(pathFor("application.css")),
 			),
 			Script(
 				Src("https://unpkg.com/hyperscript.org@0.9.8"),
@@ -54,7 +59,7 @@ func Page(saved, content Node) Node {
 				Src("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"),
 			),
 			Script(
-				Src(helpers.AssetPath("application.js")),
+				Src(pathFor("application.js")),
 			),
 		),
 		Body(
@@ -98,21 +103,18 @@ func Page(saved, content Node) Node {
 				Main(
 					Class("px-5 h-full py-5 flex flex-col gap-5"),
 					Attr("x-data"),
-					Flash(),
+					Section(
+						Class("w-full px-5 relative"),
+						Div(
+							ID("flash"),
+							hx.On("htmx:notify", "flash(this, event.detail.message)"),
+							Class("hidden z-10 absolute p-3 px-4 border border-gray-300 shadow-md rounded-lg bg-gray-200 right-[20px] -t-[20px]"),
+						),
+					),
+
 					content,
 				),
 			),
-		),
-	)
-}
-
-func Flash() Node {
-	return Section(
-		Class("w-full px-5 relative"),
-		Div(
-			ID("flash"),
-			hx.On("htmx:notify", "flash(this, event.detail.message)"),
-			Class("hidden z-10 absolute p-3 px-4 border border-gray-300 shadow-md rounded-lg bg-gray-200 right-[20px] -t-[20px]"),
 		),
 	)
 }

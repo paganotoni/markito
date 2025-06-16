@@ -4,8 +4,6 @@ import (
 	"net/http"
 	"strconv"
 
-	"markito/internal/helpers"
-
 	. "maragu.dev/gomponents"
 	. "maragu.dev/gomponents/html"
 )
@@ -30,7 +28,7 @@ func All(w http.ResponseWriter, r *http.Request) {
 				return Li(
 					A(
 						Href(
-							helpers.DocumentLink(doc.ID),
+							link(doc.ID),
 						),
 						Text(doc.ID),
 					),

@@ -1,4 +1,4 @@
-package health
+package internal
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 	"go.leapkit.dev/core/server"
 )
 
-func Check(db db.ConnFn) func(w http.ResponseWriter, r *http.Request) {
+func check(db db.ConnFn) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		db, err := db()
 		if err != nil {
