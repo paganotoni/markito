@@ -6,7 +6,7 @@ import (
 	. "maragu.dev/gomponents/html"
 )
 
-func SavedEl(doc Document) Node {
+func savedEl(doc Document) Node {
 	return Span(
 		Class("flex flex-row gap-2"),
 		Input(

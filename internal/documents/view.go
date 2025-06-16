@@ -8,7 +8,7 @@ import (
 	. "maragu.dev/gomponents/html"
 )
 
-func documentEl(doc *Document, html template.HTML) Node {
+func view(doc *Document, html template.HTML) Node {
 	return Div(
 		Class("grid grid-cols-2 w-full h-full gap-5 max-h-[calc(100vh-130px)]"),
 		Div(

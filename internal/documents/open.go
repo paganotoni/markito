@@ -18,8 +18,8 @@ func Open(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var el Node
-	el = documentEl(doc, markdown.ToHTML(doc.Content))
-	el = Page(SavedEl(*doc), el)
+	el = view(doc, markdown.ToHTML(doc.Content))
+	el = Page(savedEl(*doc), el)
 
 	err = el.Render(w)
 	if err != nil {

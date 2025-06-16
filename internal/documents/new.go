@@ -30,7 +30,7 @@ func New(w http.ResponseWriter, r *http.Request) {
 		Content: defaultMarkdown,
 	}
 
-	el := documentEl(&doc, markdown.ToHTML(doc.Content))
+	el := view(&doc, markdown.ToHTML(doc.Content))
 
 	err := Page(saveBtn, el).Render(w)
 	if err != nil {

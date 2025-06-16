@@ -27,7 +27,7 @@ func Save(w http.ResponseWriter, r *http.Request) {
 
 	// Setting the new location of the document in the header
 	w.Header().Set("Hx-Push", "/"+id)
-	el := SavedEl(Document{
+	el := savedEl(Document{
 		ID:      id,
 		Content: content,
 	})
