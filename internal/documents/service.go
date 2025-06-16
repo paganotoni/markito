@@ -6,6 +6,11 @@ import (
 	"go.leapkit.dev/core/db"
 )
 
+type Document struct {
+	ID      string `db:"id"`
+	Content string `db:"content"`
+}
+
 type service struct {
 	dbFn db.ConnFn
 }

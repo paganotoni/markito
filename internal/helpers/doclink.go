@@ -7,6 +7,6 @@ import (
 
 var baseURL = cmp.Or(os.Getenv("BASE_URL"), "http://localhost:3000")
 
-func documentLink(id string) string {
+func DocumentLink(id string) string {
 	return baseURL + "/" + id
 }

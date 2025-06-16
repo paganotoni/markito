@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/lithammer/shortuuid/v4"
-	"go.leapkit.dev/core/render"
 )
 
 // Save the content of the document in the database, if there is an id present it
@@ -26,17 +25,16 @@ func Save(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rw := render.FromCtx(r.Context())
-	rw.Set("doc", Document{
+	// Setting the new location of the document in the header
+	w.Header().Set("Hx-Push", "/"+id)
+	el := SavedEl(Document{
 		ID:      id,
 		Content: content,
 	})
 
-	// Setting the new location of the document in the header
-	w.Header().Set("Hx-Push", "/"+id)
-
-	err = rw.RenderClean("documents/saved.html")
+	err = el.Render(w)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 }

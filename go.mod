@@ -7,12 +7,12 @@ require (
 	github.com/lithammer/shortuuid/v4 v4.0.0
 	github.com/mattn/go-sqlite3 v1.14.24
 	go.leapkit.dev/core v0.1.8
+	maragu.dev/gomponents v1.1.0
+	maragu.dev/gomponents-htmx v0.6.1
 )
 
 require (
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
-	github.com/gobuffalo/flect v1.0.2 // indirect
-	github.com/gobuffalo/plush/v5 v5.0.2 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/securecookie v1.1.2 // indirect
 	github.com/gorilla/sessions v1.3.0 // indirect

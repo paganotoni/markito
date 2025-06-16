@@ -2,32 +2,24 @@ package internal
 
 import (
 	"cmp"
-	"embed"
 	"net/http"
 	"os"
 
 	"markito/internal/documents"
 	"markito/internal/health"
-	"markito/internal/helpers"
 	"markito/internal/markdown"
 	"markito/internal/system/assets"
 
 	"go.leapkit.dev/core/db"
-	"go.leapkit.dev/core/render"
 	"go.leapkit.dev/core/server"
 )
 
-var (
-	//go:embed *.html **/*.html
-	tmpls embed.FS
-
-	// DB is the database connection builder function
-	// that will be used by the application based on the driver and
-	// connection string.
-	DB = db.ConnectionFn(
-		cmp.Or(os.Getenv("DATABASE_URL"), "markito.db"),
-		db.WithDriver("sqlite3"),
-	)
+// DB is the database connection builder function
+// that will be used by the application based on the driver and
+// connection string.
+var DB = db.ConnectionFn(
+	cmp.Or(os.Getenv("DATABASE_URL"), "markito.db"),
+	db.WithDriver("sqlite3"),
 )
 
 type Server interface {
@@ -46,15 +38,6 @@ func New() (Server, error) {
 		),
 	)
 
-	r.Use(render.Middleware(
-		render.TemplateFS(tmpls, "internal"),
-		render.WithDefaultLayout("layout.html"),
-		render.WithHelpers(helpers.All),
-		render.WithHelpers(map[string]any{
-			"assetPath": assets.Manager.PathFor,
-		}),
-	))
-
 	// Services that will be injected in the context
 	r.Use(server.InCtxMiddleware("documentsService", documents.NewService(DB)))
 
@@ -63,7 +46,7 @@ func New() (Server, error) {
 	r.HandleFunc("POST /parse", markdown.Parse)
 	r.HandleFunc("POST /save", documents.Save)
 	r.HandleFunc("GET /{id}", documents.Open)
-	r.HandleFunc("GET /list/all", documents.List)
+	r.HandleFunc("GET /list/all", documents.All)
 
 	r.Folder(assets.Manager.HandlerPattern(), assets.Manager)
 	return r, nil

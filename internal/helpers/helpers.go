@@ -10,6 +10,6 @@ var All = hctx.Merge(
 		"urlHas":       urlHas,
 		"hasPrefix":    hasPrefix,
 		"urlWithParam": urlWithParams,
-		"documentLink": documentLink,
+		"documentLink": DocumentLink,
 	},
 )

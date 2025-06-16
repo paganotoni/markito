@@ -1,10 +1,11 @@
 package documents
 
 import (
-	"markito/internal/markdown"
 	"net/http"
 
-	"go.leapkit.dev/core/render"
+	"markito/internal/markdown"
+
+	. "maragu.dev/gomponents"
 )
 
 func Open(w http.ResponseWriter, r *http.Request) {
@@ -16,13 +17,13 @@ func Open(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rw := render.FromCtx(r.Context())
-	rw.Set("doc", doc)
-	rw.Set("content", doc.Content)
-	rw.Set("html", markdown.ToHTML(doc.Content))
+	var el Node
+	el = documentEl(doc, markdown.ToHTML(doc.Content))
+	el = Page(SavedEl(*doc), el)
 
-	err = rw.Render("documents/document.html")
+	err = el.Render(w)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 }
