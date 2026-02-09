@@ -40,6 +40,7 @@ func New() (Server, error) {
 	// Services that will be injected in the context
 	r.Use(server.InCtxMiddleware("documentsService", documents.NewService(DB)))
 
+	r.HandleFunc("GET /api/documents/{id}", documents.APIGet)
 	r.HandleFunc("POST /api/documents", documents.APICreate)
 	r.HandleFunc("PUT /api/documents/{id}", documents.APIUpdate)
 

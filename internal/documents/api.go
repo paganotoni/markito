@@ -15,6 +15,12 @@ type documentResponse struct {
 	HTML     string `json:"html_url"`
 }
 
+type documentGetResponse struct {
+	ID      string `json:"id"`
+	Content string `json:"content"`
+	URL     string `json:"url"`
+}
+
 func baseURL() string {
 	return cmp.Or(os.Getenv("BASE_URL"), "http://localhost:3000")
 }
@@ -72,6 +78,32 @@ func APIUpdate(w http.ResponseWriter, r *http.Request) {
 		URL:      base + "/" + id,
 		Markdown: base + "/raw/" + id + "/md",
 		HTML:     base + "/raw/" + id + "/html",
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(resp)
+}
+
+func APIGet(w http.ResponseWriter, r *http.Request) {
+	documents := r.Context().Value("documentsService").(*service)
+
+	id := r.PathValue("id")
+	if id == "" {
+		http.Error(w, `{"error":"id is required"}`, http.StatusBadRequest)
+		return
+	}
+
+	doc, err := documents.Find(id)
+	if err != nil {
+		http.Error(w, `{"error":"document not found"}`, http.StatusNotFound)
+		return
+	}
+
+	base := baseURL()
+	resp := documentGetResponse{
+		ID:      doc.ID,
+		Content: doc.Content,
+		URL:     base + "/" + doc.ID,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
