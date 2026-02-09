@@ -18,6 +18,7 @@ Install dependencies and run the setup command:
 
 ```
 go mod download
+go tool tailo download
 go run ./cmd/setup
 ```
 
