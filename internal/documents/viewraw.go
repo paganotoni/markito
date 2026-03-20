@@ -28,8 +28,27 @@ func RenderHTML(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	html := markdown.ToHTML(doc.Content)
+	htmlContent := markdown.ToHTML(doc.Content)
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	w.Write([]byte(html))
+	w.Write([]byte(`<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>` + doc.ID + `</title>
+	<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+</head>
+<body class="bg-gray-50">
+	<div class="max-w-4xl mx-auto px-4 py-8">
+		<a href="/` + doc.ID + `" class="inline-flex items-center gap-2 mb-4 text-sm text-gray-600 hover:text-gray-900">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+			Back to editor
+		</a>
+		<article class="prose prose-slate">
+		` + string(htmlContent) + `
+		</article>
+	</div>
+</body>
+</html>`))
 }

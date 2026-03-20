@@ -8,6 +8,19 @@ import (
 	. "maragu.dev/gomponents/html"
 )
 
+func rawLink(id string) Node {
+	if id == "" {
+		return nil
+	}
+
+	return A(
+		Href("/raw/"+id+"/html"),
+		Target("_blank"),
+		Class("absolute top-2 right-14 p-3 w-10 h-10 flex items-center justify-center bg-gray-300/80 cursor-pointer rounded-md hover:bg-gray-400 text-xs font-semibold"),
+		Text("RAW"),
+	)
+}
+
 func view(doc *Document, html template.HTML) Node {
 	return Div(
 		Class("grid grid-cols-2 w-full h-full gap-5 max-h-[calc(100vh-130px)]"),
@@ -42,6 +55,7 @@ func view(doc *Document, html template.HTML) Node {
 			),
 
 			Script(Raw(`hljs.highlightAll("#htmlcontainer")`)),
+			rawLink(doc.ID),
 			CopyEl(
 				"✅ HTML copied to clipboard",
 				"#MarkdownContent",
