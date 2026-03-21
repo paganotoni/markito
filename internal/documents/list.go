@@ -23,8 +23,8 @@ func All(w http.ResponseWriter, r *http.Request) {
 			Class("space-y-2"),
 			Map(docs, func(doc Document) Node {
 				displayText := doc.ID
-				if doc.Name != "" {
-					displayText = doc.Name + " (" + doc.ID + ")"
+				if doc.Name.Valid && doc.Name.String != "" {
+					displayText = doc.Name.String + " (" + doc.ID + ")"
 				}
 				return Li(
 					A(Href(link(doc.ID)), Text(displayText)),

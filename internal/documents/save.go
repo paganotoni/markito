@@ -1,6 +1,7 @@
 package documents
 
 import (
+	"database/sql"
 	"fmt"
 	"net/http"
 
@@ -33,7 +34,7 @@ func Save(w http.ResponseWriter, r *http.Request) {
 
 	el := savedEl(Document{
 		ID:      id,
-		Name:    name,
+		Name:    sql.NullString{String: name, Valid: name != ""},
 		Content: content,
 	})
 

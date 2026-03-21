@@ -1,6 +1,7 @@
 package documents
 
 import (
+	"database/sql"
 	"errors"
 
 	"go.leapkit.dev/core/db"
@@ -8,9 +9,9 @@ import (
 )
 
 type Document struct {
-	ID      string `db:"id"`
-	Name    string `db:"name"`
-	Content string `db:"content"`
+	ID      string         `db:"id"`
+	Name    sql.NullString `db:"name"`
+	Content string         `db:"content"`
 }
 
 type service struct {
@@ -56,8 +57,11 @@ func (s service) Find(id string) (*Document, error) {
 		return nil, err
 	}
 
-	if doc.Name == "" {
-		doc.Name = markdown.ExtractName(doc.Content)
+	if !doc.Name.Valid || doc.Name.String == "" {
+		doc.Name = sql.NullString{
+			String: markdown.ExtractName(doc.Content),
+			Valid:  true,
+		}
 	}
 
 	return &doc, nil
@@ -83,8 +87,11 @@ func (s service) List() ([]Document, error) {
 			return nil, err
 		}
 
-		if d.Name == "" {
-			d.Name = markdown.ExtractName(d.Content)
+		if !d.Name.Valid || d.Name.String == "" {
+			d.Name = sql.NullString{
+				String: markdown.ExtractName(d.Content),
+				Valid:  true,
+			}
 		}
 
 		doc = append(doc, d)
