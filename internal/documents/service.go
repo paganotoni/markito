@@ -51,7 +51,7 @@ func (s service) Find(id string) (*Document, error) {
 	}
 
 	var doc Document
-	row := db.QueryRow("SELECT * FROM documents WHERE id = $1", id)
+	row := db.QueryRow("SELECT id, name, content FROM documents WHERE id = $1", id)
 	err = row.Scan(&doc.ID, &doc.Name, &doc.Content)
 	if err != nil {
 		return nil, err
@@ -74,7 +74,7 @@ func (s service) List() ([]Document, error) {
 	}
 
 	var doc []Document
-	rows, err := db.Query("SELECT * FROM documents")
+	rows, err := db.Query("SELECT id, name, content FROM documents")
 	if err != nil {
 		return nil, err
 	}
