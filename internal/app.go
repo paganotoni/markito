@@ -52,6 +52,7 @@ func New() (Server, error) {
 	r.HandleFunc("GET /raw/{id}/html", documents.RenderHTML)
 	r.HandleFunc("GET /{id}", documents.Open)
 	r.HandleFunc("GET /list/all", documents.All)
+	r.HandleFunc("DELETE /list/all/{id}", documents.Delete)
 
 	r.Folder(assets.Manager.HandlerPattern(), assets.Manager)
 	return r, nil

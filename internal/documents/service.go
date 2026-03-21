@@ -100,6 +100,20 @@ func (s service) List() ([]Document, error) {
 	return doc, nil
 }
 
+func (s service) Delete(id string) error {
+	db, err := s.dbFn()
+	if err != nil {
+		return err
+	}
+
+	if db == nil {
+		return errors.New("could not connect to database")
+	}
+
+	_, err = db.Exec("DELETE FROM documents WHERE id = $1", id)
+	return err
+}
+
 func NewService(fn db.ConnFn) *service {
 	return &service{
 		dbFn: fn,
