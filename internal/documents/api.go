@@ -35,7 +35,7 @@ func APICreate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	id := shortuuid.New()
-	err := documents.Save(id, content)
+	err := documents.Save(id, "", content)
 	if err != nil {
 		http.Error(w, `{"error":"failed to save document"}`, http.StatusInternalServerError)
 		return
@@ -67,7 +67,7 @@ func APIUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := documents.Save(id, content)
+	err := documents.Save(id, "", content)
 	if err != nil {
 		http.Error(w, `{"error":"failed to save document"}`, http.StatusInternalServerError)
 		return

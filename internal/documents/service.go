@@ -4,10 +4,12 @@ import (
 	"errors"
 
 	"go.leapkit.dev/core/db"
+	"markito/internal/markdown"
 )
 
 type Document struct {
 	ID      string `db:"id"`
+	Name    string `db:"name"`
 	Content string `db:"content"`
 }
 
@@ -15,7 +17,7 @@ type service struct {
 	dbFn db.ConnFn
 }
 
-func (s service) Save(id string, content string) error {
+func (s service) Save(id string, name string, content string) error {
 	db, err := s.dbFn()
 	if err != nil {
 		return err
@@ -27,13 +29,13 @@ func (s service) Save(id string, content string) error {
 
 	sql := `
 		INSERT INTO
-			documents (id, content)
+			documents (id, name, content)
 		VALUES
-			($1, $2)
-		ON CONFLICT (id) DO UPDATE SET content = $2
+			($1, $2, $3)
+		ON CONFLICT (id) DO UPDATE SET name = $2, content = $3
 	`
 
-	_, err = db.Exec(sql, id, content)
+	_, err = db.Exec(sql, id, name, content)
 	return err
 }
 
@@ -49,9 +51,13 @@ func (s service) Find(id string) (*Document, error) {
 
 	var doc Document
 	row := db.QueryRow("SELECT * FROM documents WHERE id = $1", id)
-	err = row.Scan(&doc.ID, &doc.Content)
+	err = row.Scan(&doc.ID, &doc.Name, &doc.Content)
 	if err != nil {
 		return nil, err
+	}
+
+	if doc.Name == "" {
+		doc.Name = markdown.ExtractName(doc.Content)
 	}
 
 	return &doc, nil
@@ -72,9 +78,13 @@ func (s service) List() ([]Document, error) {
 	for rows.Next() {
 		var d Document
 
-		err := rows.Scan(&d.ID, &d.Content)
+		err := rows.Scan(&d.ID, &d.Name, &d.Content)
 		if err != nil {
 			return nil, err
+		}
+
+		if d.Name == "" {
+			d.Name = markdown.ExtractName(d.Content)
 		}
 
 		doc = append(doc, d)

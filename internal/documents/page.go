@@ -48,13 +48,19 @@ func Page(saved, content Node) Node {
 						Text("Markito"),
 					),
 				),
+				A(
+					Href("/"),
+					Class("font-medium cursor-pointer border border-white rounded-lg items-center bg-blue-500 p-1.5 px-3 text-white text-sm inline-flex flex-row gap-2 hover:bg-blue-600"),
+					lucide.Plus(),
+					Text("New"),
+				),
 				Div(
 					Class("flex-grow"),
 					A(
 						Href("https://github.com/paganotoni/markito"),
 						Class("font-medium cursor-pointer border border-white rounded-full items-center bg-blue-200 p-1.5 px-3 text-gray-600 text-sm inline-flex flex-row gap-2"),
 						lucide.Github(),
-						Text("Take a look at Markito repo on Github."),
+						Text("Github"),
 					),
 				),
 				Span(

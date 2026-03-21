@@ -10,10 +10,15 @@ import (
 
 func rawLink(id string) Node {
 	if id == "" {
-		return nil
+		return A(
+			ID("raw-link"),
+			Class("hidden absolute top-2 right-14 p-3 w-10 h-10 flex items-center justify-center bg-gray-300/80 cursor-pointer rounded-md hover:bg-gray-400 text-xs font-semibold"),
+			Text("RAW"),
+		)
 	}
 
 	return A(
+		ID("raw-link"),
 		Href("/raw/"+id+"/html"),
 		Target("_blank"),
 		Class("absolute top-2 right-14 p-3 w-10 h-10 flex items-center justify-center bg-gray-300/80 cursor-pointer rounded-md hover:bg-gray-400 text-xs font-semibold"),
